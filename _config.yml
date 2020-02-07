@@ -1,5 +1,6 @@
 # Site settings
-title:          "Luigi Freitas PU2SPY"
+title:          "Luigi Freitas"
+callsign:       "PU2SPY"
 description:    "Personal Projects Blog"
 url:            "https://luigifreitas.me"
 
@@ -38,6 +39,7 @@ plugins:
   - jekyll-paginate
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-email-protect
 
 # Permalinks
 permalink:      /:year-:month-:day/:title

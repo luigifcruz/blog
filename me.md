@@ -22,7 +22,8 @@ For presentations at events please refer to [Talks](/talks). Contact me for my c
 Feel free to contact me anytime!
 
 - Callsign: PU2SPY
-- E-Mail: [luigifcruz@gmail.com](mailto:luigifcruz@gmail.com)
+- Private E-Mail: [Gmail](mailto:{{ 'luigifcruz@gmail.com' | encode_email }})
+- Secure E-Mail: [ProtonMail](mailto:{{ 'luigifcruz@protonmail.com' | encode_email }})
 - GitHub: [@luigifreitas](https://github.com/luigifreitas){:target="_blank"}
 - Twitter: [@luigifcruz](https://twitter.com/luigifcruz){:target="_blank"}
 - Keybase: [@luigifcruz](https://keybase.io/luigifcruz){:target="_blank"}
