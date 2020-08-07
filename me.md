@@ -24,7 +24,7 @@ Feel free to contact me anytime!
 - Callsign: PU2SPY
 - Private E-Mail: [Gmail](mailto:{{ 'luigifcruz@gmail.com' | encode_email }})
 - Secure E-Mail: [ProtonMail](mailto:{{ 'luigifcruz@protonmail.com' | encode_email }})
-- GitHub: [@luigifreitas](https://github.com/luigifcruz){:target="_blank"}
+- GitHub: [@luigifcruz](https://github.com/luigifcruz){:target="_blank"}
 - Twitter: [@luigifcruz](https://twitter.com/luigifcruz){:target="_blank"}
 - Keybase: [@luigifcruz](https://keybase.io/luigifcruz){:target="_blank"}
 
