@@ -71,7 +71,7 @@ The connection between the Digital and Analog Front-End is pretty straightforwar
 
 
 ## Software Processing
-For simplicity and compatibility reasons this radar was implemented with the Open-Source Software GNU Radio Companion. It offers a great multi-OS platform for prototyping Digital Signal Processing workflows that are extremely easy to customize. This project’s GitHub [repository](https://github.com/luigifreitas/software-radar){:target="_blank"} has everything needed to get started with this radar. Other radars will be added as they are being developed.
+For simplicity and compatibility reasons this radar was implemented with the Open-Source Software GNU Radio Companion. It offers a great multi-OS platform for prototyping Digital Signal Processing workflows that are extremely easy to customize. This project’s GitHub [repository](https://github.com/luigifcruz/software-radar){:target="_blank"} has everything needed to get started with this radar. Other radars will be added as they are being developed.
 
 For the near future, I’m planning to develop a custom open-source software made specifically for radar applications. This software will enable the development of more convoluted Software Defined Radar and greatly reduce the overhead of those calculations.
 
