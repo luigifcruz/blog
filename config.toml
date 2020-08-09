@@ -1,7 +1,7 @@
 baseurl = "https://test2.luigi.ltd/"
 publishDir = "docs"
 languageCode = "en-us"
-theme = "terminal"
+theme = ["hugo-cloak-email", "terminal"]
 paginate = 5
 
 [params]
@@ -20,6 +20,16 @@ paginate = 5
 [params.twitter]
   creator = "luigifcruz"
   site = "https://twitter.com/luigifcruz"
+
+[imaging]
+  resampleFilter = "box"
+  quality = 85
+  anchor = "smart"
+  bgColor = "#ffffff"
+
+  [imaging.exif]
+    disableDate = false
+    disableLatLong = true
 
 [languages]
   [languages.en]

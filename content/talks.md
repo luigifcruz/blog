@@ -4,6 +4,8 @@ title: "My Talks"
 permalink: /talks
 ---
 
+{{< cloakemail "jane.doe@example.com" >}}
+
 These are my talks, here you can find the slides and the video if they were recorded. If you have some question, don't hesitate to contact me! Refer to the [About Page](/me) for my contact information.
 
 ## AMSAT-BR & LABRE - Satellite Amateur Workshop
