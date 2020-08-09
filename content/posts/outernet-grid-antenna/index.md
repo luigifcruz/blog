@@ -76,7 +76,7 @@ Once the demodulator is up and running, the files received should appear in the 
 ## Products & Conclusion
 I ran this setup for ~25 hours and got a bunch of data. They are all available [here](https://www.dropbox.com/s/dw0cl0uix1bb1dn/Outernet%20Files.zip?dl=0) for download. Don’t forget to follow me on [Twitter](https://twitter.com/luigifcruz) to receive my latest projects! Some screenshots of the files received:
 
-![Sample Wikipedia File — They are pretty random.](images/outernet-wikipedia-sample-2.png)
+![Sample Wikipedia File  —  They are pretty random.](images/outernet-wikipedia-sample-2.png)
 
 ![Awesome Weather Data Visualization.](images/outernet-weather-skylark.png)
 

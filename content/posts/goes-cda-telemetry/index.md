@@ -10,7 +10,7 @@ showFullContent = false
 
 In this post, I’ll detail how I managed to reverse engineer the telemetry signal from GOES-16 — NOAA’s third generation geosynchronous weather satellite built by Lockheed Martin and launched into space by ULA’s Altas V rocket. 
 
-![GOES-16 Telemetry Being Demodulated and Decoded.](images/demodulation-goes-telemetry.png)
+{{< figure src="images/demodulation-goes-telemetry.png" caption="GOES-16 Telemetry Being Demodulated and Decoded." >}}
 
 This satellite is mostly known by the HRIT signal, responsible to distribute high-resolution meteorological data to hundreds of institutions throughout the portion of the earth illuminated by the spacecraft. Including the famous full-disk images with the resolution of 250 meters per pixel. Besides the HRIT and telemetry, it also transmits other signals (e.g. DCPR and GRB) which will be discussed in the future.
 
@@ -24,11 +24,11 @@ The telemetry modulation of this generation has also changed. Now the signal is 
 ## Receiving & Demodulating
 The first step is to receive and filter the actual signal from the noise floor. Here I’m using a 2.5 MHz baseband recoding provided by Lucas Teske that can be downloaded from his [website](http://www.teske.net.br/lucas/basebands/). You can easily record the signal with the same hardware used for the HRIT signal. In the screenshot below, you can see the entire baseband recoding in blue and the actual signal filtered by a Root Raised Cosine Filter Block in red.
 
-![FIR Filter Visualization at GNURadio Companion.](images/rrc-filter-goes-telemetry.png)
+{{< figure src="images/rrc-filter-goes-telemetry.png" caption="FIR Filter Visualization at GNURadio Companion." >}}
 
 It can be easily identified as PSK modulated just by looking at the FFT. This type of modulation is widely used by L-Band spacecraft. Phase Modulation is also very common (e.g. HRPT) but they have a characteristic central carrier. I used the Cyclostationary Analysis technique to discover the signal symbol rate. With this technique, you multiply the signal with the delayed version of itself. The symbol rate will magically pop-out in the resultant graph. In this case, the symbol rate is 40 kilo-symbols per second.
 
-![Cyclostationary Analysis Resultant Bitrate.](images/bitrate-goes-telemetry.png)
+{{< figure src="images/bitrate-goes-telemetry.png" caption="Cyclostationary Analysis Resultant Bitrate." >}}
 
 The last step of the demodulation part is to apply the specifications we got into the standard BPSK demodulator and send the binary stream to the Decoder via the standard TCP Sink. The GNURadio Companion file used to reverse engineer the signal can be downloaded here. And the production companion file can be found on the Project’s GitHub Repository. This will be ported to the stock Open Satellite Project demodulator in the near future.
 
@@ -49,7 +49,7 @@ for (int i = 0; i < FRAMEBITS; i += 8) {
 
 After decoding, the three structures from the CCSDS Transfer Frame are visible in the bit-viewer. A 32 bits sync word, the payload data, and one Reed-Solomon block. The CCSDS Standard states that one RS Block is needed after 223 bits. Therefore, the frame size is 256 bits instead of 1024 bits from the HRIT frame with four RS Blocks.  
 
-![Bitview of Unsynchronized CCSDS Frames.](images/unsync-bitview-goes-telemetry.png)
+{{< figure src="images/unsync-bitview-goes-telemetry.png" caption="Bitview of Unsynchronized CCSDS Frames." >}}
 
 You can notice that the sync word isn’t at the beginning of the frame. This has to be corrected by measuring the correlation of the encoded word with every frame and perform the synchronization. For that, we will use the same correlation algorithm from the HRIT software with some modifications. The number of encoded words still two, accounting for the NRZM bit-swap. But the word length changed from 64 bit to 32 bit, since there is no 1/2 Convolutional Encoding. The Python code used to encode each word with NRZM are shown below. This code was made by Lucas Teske for the GOES-16 HRIT Patch. 
 
