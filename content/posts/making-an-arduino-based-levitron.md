@@ -8,7 +8,7 @@ showFullContent = false
 
 Me and my college group made this machine for Physics Class, so I decided to show how we made it here. The final machine can levitate a magnet smoothly for days!
 
-{% include youtubePlayer.html id="ivDXVJCK-wQ" %}
+{{< youtube ivDXVJCK-wQ >}}
 
 ### What the hell is Levitron?
 In short, Levitron is an electromagnet controlled by a micro-controller that “levitates” a permanent [rare-earth magnet](https://en.wikipedia.org/wiki/Rare-earth_magnet) by alternating the coil current. If done quickly, it creates an illusion of levitation.

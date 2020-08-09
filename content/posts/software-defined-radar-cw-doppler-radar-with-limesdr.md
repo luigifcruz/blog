@@ -9,7 +9,7 @@ showFullContent = false
 
 In this blog post, I’ll talk about my experiments with Software Defined Radar. This concept implies that radar systems can be simplified by abstracting analog hardware in favor of software implementations performing Digital Signal Processing inside a processor module. This is useful for aerospace applications. It lowers the complexity of the radar system consequently reducing the maintenance, weight and the probability of something misbehave in-flight.
 
-After reading about that, I wondered if it was possible to make something similar to reduce the number of expensive analog front-end parts needed for a radar system. This build was inspired by the [Coffee Can Radar](https://ocw.mit.edu/resources/res-ll-003-build-a-small-radar-system-capable-of-sensing-range-doppler-and-synthetic-aperture-radar-imaging-january-iap-2011/){:target="_blank"} designed by Gregory L. Charvat. This is an awesome radar that can do lots of fun tricks like FMCW and SAR Imagery. The only “problem” with them is the analog devices from Mini-Circuits required for the front-end. They are great pieces of engineering but are expensive and often hard to get, particularly from outside Europe or USA. Would be great if we could use Software Defined Radar approach to decrease the number of analog blocks needed therefore lowering the cost and simplifying assembly and testing. 
+After reading about that, I wondered if it was possible to make something similar to reduce the number of expensive analog front-end parts needed for a radar system. This build was inspired by the [Coffee Can Radar](https://ocw.mit.edu/resources/res-ll-003-build-a-small-radar-system-capable-of-sensing-range-doppler-and-synthetic-aperture-radar-imaging-january-iap-2011/) designed by Gregory L. Charvat. This is an awesome radar that can do lots of fun tricks like FMCW and SAR Imagery. The only “problem” with them is the analog devices from Mini-Circuits required for the front-end. They are great pieces of engineering but are expensive and often hard to get, particularly from outside Europe or USA. Would be great if we could use Software Defined Radar approach to decrease the number of analog blocks needed therefore lowering the cost and simplifying assembly and testing. 
 
 With that in mind, I started my experiments with a simplistic radar design and scaling things up as I become more confident. This blog post will talk about the simplest radar called Continuous Wave Radar and the next one will be about FMCW.
 
@@ -51,7 +51,7 @@ Since the final goal is to obtain the speed of the target from the Frequency Shi
 ## Analog Front-End
 This analog module is responsible for emitting and receiving two signals required by this radar. The first one is the Carrier Wave produced by the Digital Front-End radiated toward a target and a second is a scattered wave coming from a target containing a Doppler Shift. Due to the Software Defined Radar concept, this is the simplest and cheapest part of this build. Most components used here can be made by the user or bought from China.
 
-The main part of this radar are these two “cantennas”. This is a directional antenna made with a tin-can that have a diameter and waveguide proportional to the wavelength of the radio wave it’s intended to receive or transmit. They are popular with the amateur community because they are easy to manufacture and have great performance. The length of the components for this 2.4 GHz cantenna can be found [here](https://www.changpuak.ch/electronics/cantenna.php){:target="_blank"}. This simplistic front-end design lacks a power amplifier, therefore, the transmission power will be limited by the SDR employed in the next module, consequently limiting the maximum range.
+The main part of this radar are these two “cantennas”. This is a directional antenna made with a tin-can that have a diameter and waveguide proportional to the wavelength of the radio wave it’s intended to receive or transmit. They are popular with the amateur community because they are easy to manufacture and have great performance. The length of the components for this 2.4 GHz cantenna can be found [here](https://www.changpuak.ch/electronics/cantenna.php). This simplistic front-end design lacks a power amplifier, therefore, the transmission power will be limited by the SDR employed in the next module, consequently limiting the maximum range.
 
 For better results, a commercial directional antenna like horn or patch antennas can be used here. This will be useful for future projects since the manufacturer provides all technical information like radiation pattern and gain.
 
@@ -63,7 +63,7 @@ The second part of the analog front-end is the receiver’s low-noise amplifier.
 ## Digital Front-End
 This module is an essential part of this radar. It serves as a bridge between software and hardware. The scattered signal coming from the target is digitized to be later processed and the signal to be transmitted is generated. All signals are sent to and received from the computer software via a USB connection.
 
-This is by far the most expensive module of this equipment. It will require a Software Defined Radio capable of Transmitting (TX) and Receiving (RX) at the same time, a feature known as full duplex. The cost of these radios can vary from hundreds to thousands of dollars. Here, I’m using the LimeSDR Mini ($159,00 USD at [CrowdSupply](https://www.crowdsupply.com/lime-micro/limesdr-mini){:target="_blank"}) which is excellent for this type of research.
+This is by far the most expensive module of this equipment. It will require a Software Defined Radio capable of Transmitting (TX) and Receiving (RX) at the same time, a feature known as full duplex. The cost of these radios can vary from hundreds to thousands of dollars. Here, I’m using the LimeSDR Mini ($159,00 USD at [CrowdSupply](https://www.crowdsupply.com/lime-micro/limesdr-mini)) which is excellent for this type of research.
 
 The LimeSDR Mini device is the little brother of the LimeSDR USB with more or less half of the capacity. It provides full-duplex transmission and reception of signals up to 30.72 msps of bandwidth. It also delivers 12 bits of ADC resolution and a frequency range from 10 MHz to 3.5 GHz. Since this is a high-bandwidth radio, the host computer and the USB 3.0 chipset need to manage the huge amount of data for a smooth experience. A Linux based OS is also recommended. Fortunately, this project’s radar type uses only 4 msps of bandwidth, so every computer should maintain this data stream.
 
@@ -73,7 +73,7 @@ The connection between the Digital and Analog Front-End is pretty straightforwar
 
 
 ## Software Processing
-For simplicity and compatibility reasons this radar was implemented with the Open-Source Software GNU Radio Companion. It offers a great multi-OS platform for prototyping Digital Signal Processing workflows that are extremely easy to customize. This project’s GitHub [repository](https://github.com/luigifcruz/software-radar){:target="_blank"} has everything needed to get started with this radar. Other radars will be added as they are being developed.
+For simplicity and compatibility reasons this radar was implemented with the Open-Source Software GNU Radio Companion. It offers a great multi-OS platform for prototyping Digital Signal Processing workflows that are extremely easy to customize. This project’s GitHub [repository](https://github.com/luigifcruz/software-radar) has everything needed to get started with this radar. Other radars will be added as they are being developed.
 
 For the near future, I’m planning to develop a custom open-source software made specifically for radar applications. This software will enable the development of more convoluted Software Defined Radar and greatly reduce the overhead of those calculations.
 
@@ -95,7 +95,7 @@ Since the Doppler Shift of a 2.4 GHz signal is small for terrestrial speeds, the
 ## Testing
 To validate that the radar was actually working, I made an indoor test with a fan in front of the antennas. Since the blades of the fan are angled, the circular movement generates a linear motion that the radar can detect. With an ideal sampling rate, this speed component would be like a sawtooth wave, but since they are rotating at a high speed, this radar doesn’t have the temporal resolution to measure them. This test produced a very clear line of the speed in the spectrogram. Beyond the speed, it was possible to see acceleration variations when a speed shift happened. This test can be seen in the video below. 
 
-{% include youtubePlayer.html id="1Xnwza5nvmo" %}
+{{< youtube 1Xnwza5nvmo >}}
 
 The next experiment was made measuring the speed of vehicles. In the first attempt, the radar was put on the side of the sidewalk and pointed to the cars in movement. The resulting complex stream from the Low Pass Filter Block was recorded on a disk. This data was later turned into the spectrogram below by a Python script. The Doppler Shift measured in Hz was converted to km/h using the last equation from Continuous Wave Doppler Radar. The speed of all twelve vehicles that passed that street can be seen in the spectrogram represented with S-shaped vertical lines. The speed is negative when the vehicle is coming towards the radar and negative when it is moving away. There are also smaller vertical lines attributed to pedestrians passing by.
 
@@ -111,7 +111,7 @@ The generated spectrogram shows a similar result from the last test. The vehicle
 
 This last experiment was made to make sure the radar was measuring the correct speed. This time a car will pass in front of the radar at a fixed speed. If the speed of the car’s speedometer matches the speed measured by the radar, the results can be validated. The car made three passes with incremental speeds of 10 km/h, 30 km/h and 60 km/h. This test can be seen in the video below. Note that the FFT view shows the amplitude of the signal in respect to the frequency shift. To simplify the analysis process, the spectrogram was generated with the automatic conversion from frequency to speed. The result has shown that the car was indeed at the right speed at each pass, respectively 9.3 km/h, 28.8 km/h and 56.0 km/h.
 
-{% include youtubePlayer.html id="uB6TDklbbI4" %}
+{{< youtube uB6TDklbbI4 >}}
 
 ![](https://cdn.luigifreitas.me/sfcw-radar-post/car-speed-test-doppler.png)
 

@@ -78,7 +78,7 @@ print(encodedbword);
 
 The frame is now synchronized and can be de-randomized by the same polynomials used by the HRIT. They are specified by the CCSDS standard. To save CPU the sync word is deleted from the rest of the frame. Now we run the Reed-Solomon algorithm to identify and correct any error with the frame. Finally, the data is corrected and ready for the demuxing part that will process the CCSDS Transfer Frame into the final data. 
 
-{% include youtubePlayer.html id="-6iLRd4mng0" %}
+{{< youtube -6iLRd4mng0 >}}
 
 ## Next up: Demuxing 
 The demuxing part isn’t completely figured out yet. Lack of public documentation regarding the inner layer of the data field forces us to reverse engineer it from scratch. This isn’t a trivial situation because the telemetry data isn’t predictable. I will talk about it in the next post. Follow me on Twitter [@luigifcruz](https://twitter.com/luigifcruz) to get the latest updates. The decoder and demodulator are available on [GitHub](https://github.com/opensatelliteproject/tlmdemod). Big thanks to [@usa_satcom](https://twitter.com/usa_satcom?lang=en) and [@lucasteske](https://twitter.com/lucasteske?lang=en) for the support. 
