@@ -4,8 +4,8 @@ date = "2017-07-10"
 author = "Luigi Cruz"
 authorTwitter = "luigifcruz"
 showFullContent = false
+slug = "receiving-and-demodulating-the-lrpt-signal"
 +++
-
 
 In the previous post, I talked about how I got the analog APT earth images from the NOAA sats and how I made my QFH Antenna. As I said, the APT signal is a legacy image transmission method from the 1960s that have strong drawbacks. The newest sats like Meteor-M and MetOp-A have a new protocol with digital modulation called LRPT (Low Rate Picture Transfer). Currently the single sat transmitting this protocol is the Meteor-MN2 and occasionally the Meteor-MN1. Sadly, the LRPT in the MetOp-A satellite is permanently deactivated after cause interference with the HIRS instrument.
 

@@ -4,9 +4,8 @@ date = "2018-02-12"
 author = "Luigi Cruz"
 authorTwitter = "luigifcruz"
 showFullContent = false
+slug = "reverse-engineering-goes-cda-telemetry"
 +++
-
-
 
 In this post, I’ll detail how I managed to reverse engineer the telemetry signal from GOES-16 — NOAA’s third generation geosynchronous weather satellite built by Lockheed Martin and launched into space by ULA’s Altas V rocket. 
 

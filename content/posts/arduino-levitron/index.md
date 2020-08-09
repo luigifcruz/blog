@@ -4,6 +4,7 @@ date = "2016-12-12"
 author = "Luigi Cruz"
 authorTwitter = "luigifcruz"
 showFullContent = false
+slug = "making-an-arduino-based-levitron"
 +++
 
 Me and my college group made this machine for Physics Class, so I decided to show how we made it here. The final machine can levitate a magnet smoothly for days!
