@@ -14,7 +14,7 @@ paginate = 5
   showLastUpdated = false
 
 [permalinks]
-  posts = "/:year-:1-:2/:title"
+  posts = "/:year-:month-:day/:title"
 
 [params.twitter]
   creator = "luigifcruz"
