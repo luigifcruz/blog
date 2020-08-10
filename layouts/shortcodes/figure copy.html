@@ -1,0 +1,7 @@
+{{ $raw_src := .Page.Resources.GetMatch (printf "*%s*" (.Get "src")) }}
+{{ $src := $raw_src.Resize (printf "%dx jpg" $raw_src.Width) }}
+
+<figure class="left">
+    <img src="{{ $src.RelPermalink }}" alt="{{ printf "%s" (.Get "caption") }}"/>
+    <figcaption class="center">{{ printf "%s" (.Get "caption") }}</figcaption>
+</figure>
