@@ -1,4 +1,4 @@
-baseurl = "https://test.luigi.ltd/"
+baseurl = "https://luigi.ltd/"
 publishDir = "docs"
 languageCode = "en-us"
 theme = ["hugo-cloak-email", "terminal"]
