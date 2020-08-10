@@ -7,7 +7,7 @@ enableRobotsTXT = true
 
 [params]
   contentTypeName = "posts"
-  themeColor = "pink"
+  themeColor = "red"
   showMenuItems = 5
   showLanguageSelector = false
   fullWidthTheme = false

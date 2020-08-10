@@ -5,7 +5,7 @@ author = "Luigi Cruz"
 authorTwitter = "luigifcruz"
 showFullContent = false
 slug = "receiving-and-demodulating-the-lrpt-signal"
-cover = "/2017-07-10/receiving-and-demodulating-the-lrpt-signal/images/meteor-lrpt-cities.png"
+cover = "/2017-07-10/receiving-and-demodulating-the-lrpt-signal/images/meteor-lrpt-cities.jpg"
 tags = ["Satellite", "SDR", "LRPT"]
 +++
 
