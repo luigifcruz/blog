@@ -5,6 +5,7 @@ author = "Luigi Cruz"
 authorTwitter = "luigifcruz"
 showFullContent = false
 slug = "using-limenet-internal-gnss-constellation-monitor"
+cover = "https://test.luigi.ltd/2019-09-20/using-limenet-internal-gnss-constellation-monitor/images/limenet-gnss-module.jpg"
 +++
 
 In this blog post, I will explain how I managed to get a GNSS multi-constellation monitor called Galmon working on my LimeNET Micro. The Galmon project is a crowdsourcing tool developed by [@PowerDNS_Bert](https://twitter.com/PowerDNS_Bert) to monitor the health status of GNSS constellations including the GPS, GLONASS, BeiDou and more notably Galileo. The project relies on volunteers to set up inexpensive stations based on the Ublox-M8 module to receive GNSS packets and send diagnostic data back to an aggregator.
