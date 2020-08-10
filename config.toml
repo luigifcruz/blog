@@ -34,11 +34,11 @@ paginate = 5
 [languages]
   [languages.en]
     languageName = "English"
-    title = "Luigi Cruz"
+    title = "Luigi Cruz - PU2SPY"
     subtitle = "Computer Engineering Student. Radio Amateur (PU2SPY). Interested in Rockets, Satellites and Machine Learning."
     owner = "Luigi Cruz"
-    keywords = ""
-    copyright = ""
+    keywords = "Open-Source, Rockets, Satellites, Machine Learning, Raspberry Pi"
+    copyright = "© 2020 Luigi F. Cruz"
     menuMore = "Show more"
     readMore = "Read more"
     readOtherPosts = "Read other posts"
