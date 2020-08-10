@@ -7,7 +7,7 @@ enableRobotsTXT = true
 
 [params]
   contentTypeName = "posts"
-  themeColor = "red"
+  themeColor = "green"
   showMenuItems = 5
   showLanguageSelector = false
   fullWidthTheme = false
@@ -36,10 +36,10 @@ enableRobotsTXT = true
   [languages.en]
     languageName = "English"
     title = "Luigi Cruz - PU2SPY"
-    subtitle = "Computer Engineering Student. Radio Amateur (PU2SPY). Interested in Rockets, Satellites and Machine Learning."
+    subtitle = "Personal website. Computer Engineering Student. Radio Amateur (PU2SPY). Talking about SDRs, Raspberry Pi, Machine Learning, Parallel Computing, Satellites, Python, C++ and Golang."
     owner = "Luigi Cruz"
-    keywords = "Open-Source, Rockets, Satellites, Machine Learning, Raspberry Pi"
-    copyright = "© 2020 Luigi F. Cruz"
+    keywords = "SDRs, Raspberry Pi, Machine Learning, Parallel Computing, Satellites, Python, C++, Golang"
+    copyright = "© 2020 Luigi Cruz"
     menuMore = "Show more"
     readMore = "Read more"
     readOtherPosts = "Read other posts"
@@ -52,18 +52,27 @@ enableRobotsTXT = true
 
     [languages.en.menu]
       [[languages.en.menu.main]]
-        identifier = "about"
+        identifier = "About"
         name = "About"
         url = "/about"
-      [[languages.en.menu.main]]
-        identifier = "Talks"
-        name = "Talks"
-        url = "/talks"
+        weight = 1
       [[languages.en.menu.main]]
         identifier = "Projects"
         name = "Projects"
         url = "/projects"
+        weight = 2
       [[languages.en.menu.main]]
         identifier = "Contact"
         name = "Contact"
         url = "/contact"
+        weight = 3
+      [[languages.en.menu.main]]
+        identifier = "Twitter"
+        name = "Twitter"
+        url = "https://twitter.com/luigifcruz"
+        weight = 4
+      [[languages.en.menu.main]]
+        identifier = "Github"
+        name = "Github"
+        url = "https://github.com/luigifcruz"
+        weight = 5
