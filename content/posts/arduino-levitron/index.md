@@ -21,18 +21,18 @@ This Levitron uses a [Hall Effect Linear Sensor](https://en.wikipedia.org/wiki/H
 ## First Step: The Electromagnet
 This is the main part of the project. The [Electromagnet](https://en.wikipedia.org/wiki/Electromagnet) will generate the force we will need to pull the magnet in our direction. We used almost ~150 meters of 0.4 mm Copper Wire to make ~2000 turns in ~18 layers. This electromagnet is very strong, perhaps stronger than we need, so we will limit the max current to 1A@5V to prevent over-heating. In this case we [3D printed](https://twitter.com/luigifcruz/status/796422583457611786) the reel.
 
-![Reel being printed.](images/levitron-reel-being-printed.jpeg)
+{{< img src="images/levitron-reel-being-printed.jpeg" >}}
 
 Winding the coil will be the most tedious part of this project, but in the end you will have a very cool electromagnet! Thankfully Mateus made this for us with a screwdriver. Will be a good ideia to protect each layer with insulating tape to prevent any overlap. And remember to wind the wire always in the same direction.
 
-![Electromagnet being winded. (Source: Mateus Trindade)](images/levitron-coil-being-winded.jpeg)
+{{< img src="images/levitron-coil-being-winded.jpeg" >}}
 
 For the [Ferromagnetic Core](https://en.wikipedia.org/wiki/Electromagnet#Magnetic_core), we used a screw, but ideally it should fit perfectly inside the coil frame inner gap to generate the strongest magnetic field possible.
 
 ## Second Part: Linear Hall Effect Sensor
 This is the second more important part of the entire project. This sensor provides the only information the Arduino needs to tune the frequency of the [PWM](https://en.wikipedia.org/wiki/Pulse-width_modulation) Signal for a steady levitation. This sensor relies on a magical electromagnetic effect called [Hall Effect](https://en.wikipedia.org/wiki/Hall_effect), which translates the magnetic field strength to a differential electrical potential, which can be easily read by the Arduino analog port. In this project we used the [SS49E Sensor](https://dscl.lcsr.jhu.edu/mainimages/3/31/SS49e_Hall_Sensor_Datasheet.pdf), but any linear hall sensor will get the job done. Notice that some sensors have a [Schmitt Trigger](https://en.wikipedia.org/wiki/Schmitt_trigger) which translates the linear signal to PWM signal, making the sensor useless.
 
-![Dielectric separation between the bolt and the sensor.](images/levitron-coil-with-hall-sensor.jpeg)
+{{< img src="images/levitron-coil-with-hall-sensor.jpeg" >}}
 
 We made a 1CM dielectric separation between the sensor and the bolt with hot glue to prevent interference with the magnetic field created by the coil. This minor change will make the interference of the coil magnetic field insignificant, so that it can be safely ignored.
 
@@ -95,9 +95,9 @@ void loop() {
 ## Final Part: The Frame
 In this part you can do whatever you want, we made a wood frame to secure the coil in place, but it can be made out of any material, acrylic for example.
 
-![Fusion 360 Load Simulation.](images/levitron-frame-simulation.jpeg)
+{{< img src="images/levitron-frame-simulation.jpeg" >}}
 
 ## Appendix: Next Up
 In the near future I will add a serial feedback to MATLAB for educational purposes. Would be great to have a realtime plot to see how the magnetic field and PWM signal varies as the magnet moves and levitates.
 
-![Finished Levitron](images/finished-levitron.jpeg)
+{{< img src="images/finished-levitron.jpeg" >}}

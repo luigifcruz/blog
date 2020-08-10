@@ -11,21 +11,21 @@ tags = ["Satellites", "SDR", "APT", "LRPT"]
 
 Today, America and Russia have meteorological satellites orbiting the earth every hour, as they transit thought the planet, they beam down images with a visible, mid-near infrared or infrared spectrum. With infrared is possible to identify clouds even at night as well as the temperatures of the land, sea or cloud tops.
 
-![South America from Space. Received by me with this antenna. NOAA19.](images/apt-image.jpeg)
+{{< img src="images/apt-image.jpeg" >}}
 
 This signal is fairly weak, so I need a big antenna. There are several types but the best choice is the QFH (QuadriFilar Helicoidal) Antenna which have the right polarization for this type of signal and it’s easy to build. Many people also use the Turnstile Antenna which works pretty well for them too.
 
 ## Basic Theory
 They use various methods to transmit the images, more notability APT or LRPT. The analog signal APT (used by NOAA) and the digital LRPT (used by Meteor-M) are the easiest to receive, as they transmit in the 137 Mhz band and have low bandwidth. The APT signal is an old transmission method, hence have lower resolution, and LRPT is a much newer protocol which transmit relatively high resolution digital images.
 
-![RHCP (left) and LHCP (right). Source: Hackaday](images/signal-polarization.jpeg)
+{{< img src="images/signal-polarization.jpeg" >}}
 
 These signals are transmitted with polarization, which means that I’ll need to use a polarized antenna to get the best SNR possible. In this case the signal is RHCP, therefore I need to make the antenna with a anti-clockwise helix.
 
 ## Design
 This antenna have three main parts, the inner tube, outer tube and the helix. I inspired the design in three projects from the internet ([1](http://abdallah.hiof.no/QFH/), [2](http://www.askrlc.co.uk/), [3](http://tinhatranch.com/how-to-build-a-qfh-quadrifilar-helix-antenna-to-download-images-from-weather-satellites/#.WI6AOnCZNo6)). The dimensions of the three projects are the same, so feel free to use their projects as reference too.
 
-![Final Antenna.](images/final-qfh-antenna.jpeg)
+{{< img src="images/final-qfh-antenna.jpeg" >}}
 
 The outer tube is designed to be the antenna support and help with the water & dust protection. And the shorter inner tube is designed to frame the helix frame and the balun. The balun is a four turn inductor made with the cable to reduce the overall interference, photo in the gallery below.
 The antenna have four helix, two shorter and two larger. See the table in Materials to get the full dimensions. Since this antena is RHCP the helix needs to be turn anti-clockwise to work. The cable is a common coaxial cable, fancy shielding isn’t required for this length and frequency.
@@ -58,7 +58,7 @@ The construction is pretty straight foward. I straightened the copper pipes, cut
 ## Wiring
 The wiring is pretty straightfoward, the longer loop connected with the shorter loop on each side, as shown in the diagram below.
 
-![Wiring Diagram (left, source: SDRSatellitesSounds) and actual wiring (right).](images/antenna-wiring.png)
+{{< img src="images/antenna-wiring.png" >}}
 
 ## Receiving & Decoding
 To receive the signal we need to know when the satellite will pass over our location, for this task I used [gpredict](http://gpredict.oz9aec.net/). Currently just four satellites transmit the images, here are the list with their frequencies and protocols:
@@ -67,7 +67,7 @@ To receive the signal we need to know when the satellite will pass over our loca
 - NOAA 19 APT 137.100 MHz
 - Meteor-MN2 LRPT 137.900 MHz
 
-![Strong APT signal. The frequency doppler shift is visible in the waterfall.](images/noaa-apt-fft.png)
+{{< img src="images/noaa-apt-fft.png" >}}
 
 To receive the RF Signal in my computer I used a cheap RTL-SDR from my previous story and [GQRX](https://github.com/csete/gqrx) to demodulate and display the signal. The demodulation I use is WFM which give me the best image quality.
 
@@ -85,4 +85,4 @@ I already made the first test and the SNR was ~40dB with 80° of elevation. See 
 ## Next up: Geosynchronous
 Sun synchronous satellites are awesome, but let’s climb higher! 📡
 
-![Source: NASA](images/goes-r-launch.jpeg)
+{{< img src="images/goes-r-launch.jpeg" >}}

@@ -92,6 +92,6 @@ src 11 currently receiving: 0,2@0 0,12@0 0,15@0 0,24@0 0,25@0 0,29@0 0,32@0 2,11
 
 This command creates a web dashboard to monitor the current satellites being received by your station in real-time. This panel shows a bunch of cool diagnostics for each satellite, like health status, elevation, signal-to-noise ratio, and ephemeris age. To start feeding the observation data to the central Galmon server you need to ask for a callsign and server address to [@GalileoSats](https://twitter.com/GalileoSats) on Twitter. By doing this, your station will be shown in the [Earth Map](https://galmon.eu/geo/) with an estimated position. 
 
-![Galmon Dashboard](images/galmon-dashboard.png)
+{{< img src="images/galmon-dashboard.png" >}}
 
 **Disclaimer:** The article made possible by the LimeNET Micro sample sent for me free of charge by Lime Microsystems. No compensation was requested or provided. Opinions are completely mine and no copy approval was given. You are seeing this post at the same time as they are.

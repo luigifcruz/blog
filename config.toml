@@ -3,6 +3,7 @@ publishDir = "docs"
 languageCode = "en-us"
 theme = ["hugo-cloak-email", "terminal"]
 paginate = 5
+enableRobotsTXT = true
 
 [params]
   contentTypeName = "posts"
@@ -22,8 +23,8 @@ paginate = 5
   site = "https://twitter.com/luigifcruz"
 
 [imaging]
-  resampleFilter = "box"
-  quality = 85
+  resampleFilter = "linear"
+  quality = 95
   anchor = "smart"
   bgColor = "#ffffff"
 

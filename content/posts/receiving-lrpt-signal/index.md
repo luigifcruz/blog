@@ -16,7 +16,7 @@ The only satellites set to launch which will support LRPT is the next generation
 ## APT vs LRPT
 The practical difference between them is the final image resolution and the number of images channels. The LRPT have three digital channels, each pixel of the image corresponds to one kilometer or 0.62 miles of land. By another hand, the APT just have two analog channels, an image resolution 4x smaller and it’s highly susceptible to interference.
 
-![APT Frame Diagram](images/apt-frame-diagram.gif)
+{{< img src="images/apt-frame-diagram.gif" >}}
 
 The technical differences are the modulation. The LRPT is a modern digital Quadrature Phase-Shift Keying ([QPSK](https://en.wikipedia.org/wiki/Phase-shift_keying)) signal transmitted at an 80 kiloBaud rate. This and the data scrambling make the signal more homogeneous by better distributing the energy through the beam, improving the efficiency and avoiding loose synchronization with the receiver. The LRPT also use error correction techniques, like Convolutional Coding and Reed-Solomon to validate and avoid loosing packages.
 
@@ -25,15 +25,15 @@ The APT is an analog signal with a much simpler structure with no error correcti
 ## Receiving the Signal
 For this, I used the same QFH Antenna that I used to receive the APT Signal. This is possible because the LRPT Signal is transmitted in the same VHF frequency (137 MHz) and is RHCP too. The only difference between them is the bandwidth. The LRPT will look like random noise.
 
-![The LRPT signal in SDR#](images/lrpt-fft-signal.png)
+{{< img src="images/lrpt-fft-signal.png" >}}
 
 The software to record the LRPT signal was the main problem that I had. The recommended software to do that is the [SDR#](http://airspy.com/download/), which only works with Windows. As a macOS user, I used a VMWare Windows Virtual Machine to run the program, but the result was a crappy image full of missing frames. The problem could be caused by the VM USB driver or the CPU speed with virtualization.
 
-![Awful Meteor-M LRPT Image](images/corrupted-lrpt-image.png)
+{{< img src="images/corrupted-lrpt-image.png" >}}
 
 After testing with other versions of Windows, I gave up the Virtual Machine and installed the Windows 7 with Bootcamp. It worked flawlessly and I was Finally able to record a great Meteor-MN2 pass over South America. The full RAW image can be found [here](https://cdn.luigifreitas.me/essays/1486860532514.bmp).
 
-![Enhanced Meteor-MN2 Image](images/enhanced-lrpt-image-south-america.jpeg)
+{{< img src="images/enhanced-lrpt-image-south-america.jpeg" >}}
 
 ## Signal Demodulation
 There are a bunch of software out there to demodulate this signal. I had more success with the [QPSK Demodulator Plugin](http://www.rtl-sdr.ru/page/komplekt-plaginov-dlja-priema-sputnikov) for the SDR#. It’s simple to use and makes a good job. You even get a real-time QPSK constellation. The only downside is that it take a while to lock into the signal, so you end up losing some frames. If you are on a slow computer, you could loose some frames, as it runs side-by-side with the SDR#.
@@ -42,7 +42,7 @@ The other solution is to record the WAV 16-bit PCM I/Q signal with the built-in 
 ## Getting the Images
 Both of the methods above output a binary RAW file which is the bitstream sent from the satellite. This file has all the image bits that have to be processed by another program to finally became an image. I won’t discuss the entire process in this essay, but everything is almost compliant with the CCSDS standard.
 
-![LRPT Offline Decoding Working](images/processing-lrpt-image.png)
+{{< img src="images/processing-lrpt-image.png" >}}
 
 By far, the best software to process these binary files is the Oleg’s “LRPT Offline Decoder” available for download [here](http://meteor.robonuka.ru/for-experts/new-lrpt-analizer/). The decoder will read the file and generate three images from the virtual channels. It also combines the three images to generate an awesome RGB colored image. There is also an option to save the image with lossless BMP or ordinary JPEG.
 
