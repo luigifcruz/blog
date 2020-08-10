@@ -6,6 +6,8 @@ authorTwitter = "luigifcruz"
 showFullContent = false
 math = true
 slug = "software-defined-radar-cw-doppler-radar-with-limesdr"
+cover = "/2018-11-23/software-defined-radar-cw-doppler-radar-with-limesdr/images/radar_sfcw_portable_hardware_limesdr.jpg"
+tags = ["Radar", "SDR", "GNURadio", "RaspberryPi", "LimeSDR"]
 +++
 
 In this blog post, I’ll talk about my experiments with Software Defined Radar. This concept implies that radar systems can be simplified by abstracting analog hardware in favor of software implementations performing Digital Signal Processing inside a processor module. This is useful for aerospace applications. It lowers the complexity of the radar system consequently reducing the maintenance, weight and the probability of something misbehave in-flight.

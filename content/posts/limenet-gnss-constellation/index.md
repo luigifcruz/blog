@@ -5,12 +5,11 @@ author = "Luigi Cruz"
 authorTwitter = "luigifcruz"
 showFullContent = false
 slug = "using-limenet-internal-gnss-constellation-monitor"
-cover = "https://test.luigi.ltd/2019-09-20/using-limenet-internal-gnss-constellation-monitor/images/limenet-gnss-module.jpg"
+cover = "/2019-09-20/using-limenet-internal-gnss-constellation-monitor/images/limenet-gnss-module.jpg"
+tags = ["LimeNET", "GNSS", "Galileo", "RaspberryPi"]
 +++
 
 In this blog post, I will explain how I managed to get a GNSS multi-constellation monitor called Galmon working on my LimeNET Micro. The Galmon project is a crowdsourcing tool developed by [@PowerDNS_Bert](https://twitter.com/PowerDNS_Bert) to monitor the health status of GNSS constellations including the GPS, GLONASS, BeiDou and more notably Galileo. The project relies on volunteers to set up inexpensive stations based on the Ublox-M8 module to receive GNSS packets and send diagnostic data back to an aggregator.
-
-![](images/limenet-gnss-module.jpg)
 
 This data gathering has [already proven](https://twitter.com/GalileoSats/status/1169160015829225472?s=20) to be very useful to diagnose if something weird is happening. This monitoring system can be particularly fun since the European GNSS System called Galileo is on its early operational state. The European Global Navigation System was initially proposed in 1999 with the first operational launch happening in 2011. Even though this project is almost as old as me it's still encountering some trouble. From failed to reach orbit early [launches](https://www.theguardian.com/technology/2014/aug/24/galileo-gps-satellites-launched-into-wrong-orbit) to failing onboard [atomic clocks](https://spacenews.com/rash-of-galileo-clock-failures-cast-doubt-on-timing-of-upcoming-launches/) and more recently the week-long widespread [outage](https://www.wired.com/story/galileo-satellite-outage-gps/).
 

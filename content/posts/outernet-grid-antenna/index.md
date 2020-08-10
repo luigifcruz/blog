@@ -5,6 +5,8 @@ author = "Luigi Cruz"
 authorTwitter = "luigifcruz"
 showFullContent = false
 slug = "outernet-receiver-with-a-wifi-grid-antenna"
+cover = "/2017-08-04/outernet-receiver-with-a-wifi-grid-antenna/images/outernet-americas-signal-fft.png"
+tags = ["Outernet", "SDR", "RaspberryPi"]
 +++
 
 I originally bought most of this hardware for the reception of the HRIT & LRIT signals coming from the NOAA’s GOES Geostationary Satellites. Since I’m waiting for more LNAs to arrive from China, I decided to play around with my stock Wi-Fi Grid Antenna and figure out what else I can do with it.

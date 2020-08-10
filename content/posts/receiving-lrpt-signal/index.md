@@ -5,11 +5,11 @@ author = "Luigi Cruz"
 authorTwitter = "luigifcruz"
 showFullContent = false
 slug = "receiving-and-demodulating-the-lrpt-signal"
+cover = "/2017-07-10/receiving-and-demodulating-the-lrpt-signal/images/meteor-lrpt-cities.png"
+tags = ["Satellite", "SDR", "LRPT"]
 +++
 
 In the previous post, I talked about how I got the analog APT earth images from the NOAA sats and how I made my QFH Antenna. As I said, the APT signal is a legacy image transmission method from the 1960s that have strong drawbacks. The newest sats like Meteor-M and MetOp-A have a new protocol with digital modulation called LRPT (Low Rate Picture Transfer). Currently the single sat transmitting this protocol is the Meteor-MN2 and occasionally the Meteor-MN1. Sadly, the LRPT in the MetOp-A satellite is permanently deactivated after cause interference with the HIRS instrument.
-
-![Meteor-M image of South America](images/meteor-lrpt-cities.png)
 
 The only satellites set to launch which will support LRPT is the next generation of Russian’s Meteor, the Meteor-M N2–1 and Meteor-M 2–2 later this year. The next generation of U.S. polar-orbiting satellites will use a similar protocol called LRD (Low Rate Data) which use a much higher frequency and bandwidth that require a trackable RHCP dish, just like the current HRPT.
 

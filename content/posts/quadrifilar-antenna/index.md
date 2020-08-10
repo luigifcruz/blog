@@ -5,6 +5,8 @@ author = "Luigi Cruz"
 authorTwitter = "luigifcruz"
 showFullContent = false
 slug = "making-a-quadrifilar-antenna-for-noaa-apt"
+cover = "/2017-01-30/making-a-quadrifilar-antenna-for-noaa-apt/images/noaa-apt-fft.png"
+tags = ["Satellites", "SDR", "APT", "LRPT"]
 +++
 
 Today, America and Russia have meteorological satellites orbiting the earth every hour, as they transit thought the planet, they beam down images with a visible, mid-near infrared or infrared spectrum. With infrared is possible to identify clouds even at night as well as the temperatures of the land, sea or cloud tops.
