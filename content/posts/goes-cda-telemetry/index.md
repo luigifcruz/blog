@@ -82,3 +82,5 @@ The frame is now synchronized and can be de-randomized by the same polynomials u
 
 ## Next up: Demuxing 
 The demuxing part isn’t completely figured out yet. Lack of public documentation regarding the inner layer of the data field forces us to reverse engineer it from scratch. This isn’t a trivial situation because the telemetry data isn’t predictable. I will talk about it in the next post. Follow me on Twitter [@luigifcruz](https://twitter.com/luigifcruz) to get the latest updates. The decoder and demodulator are available on [GitHub](https://github.com/opensatelliteproject/tlmdemod). Big thanks to [@usa_satcom](https://twitter.com/usa_satcom?lang=en) and [@lucasteske](https://twitter.com/lucasteske?lang=en) for the support. 
+
+{{< banner >}}

@@ -86,3 +86,5 @@ I already made the first test and the SNR was ~40dB with 80° of elevation. See 
 Sun synchronous satellites are awesome, but let’s climb higher! 📡
 
 {{< img src="images/goes-r-launch.jpeg" >}}
+
+{{< banner >}}

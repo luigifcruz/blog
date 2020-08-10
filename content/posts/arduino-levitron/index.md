@@ -101,3 +101,5 @@ In this part you can do whatever you want, we made a wood frame to secure the co
 In the near future I will add a serial feedback to MATLAB for educational purposes. Would be great to have a realtime plot to see how the magnetic field and PWM signal varies as the magnet moves and levitates.
 
 {{< img src="images/finished-levitron.jpeg" >}}
+
+{{< banner >}}

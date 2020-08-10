@@ -124,4 +124,4 @@ As we can see in the tests above, this project had pretty good results for such 
 
 It was fun to develop and see how the theory works in practice. It also inspired me to build another type of more advanced radar based on software processing. Follow me on Twitter to get the latest updates about my projects. This blog also has an RSS Feed available for your preferred RSS app.
 
-_Thanks for reading!_
+{{< banner >}}
