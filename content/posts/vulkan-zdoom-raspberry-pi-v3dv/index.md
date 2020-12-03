@@ -16,7 +16,7 @@ The Raspberry Pi Foundation is working with the Open-Source consultancy company 
 
 Their roadmap for the future is to improve performance and upgrade the conformant version by supporting required features by the Vulkan Specification. That is interesting because, with a higher conformant version, you can run more Vulkan based software on your favorite Single Board Computer!
 
-My intention in trying to run DOOM games with this driver is to contribute to the development by identifying and requesting useful features used by real applications. I'm not in the development team, but I'm going to try to merge these patches into upstream Mesa. You can follow updates regarding this [here]().
+My intention in trying to run DOOM games with this driver is to contribute to the development by identifying and requesting useful features used by real applications. I'm not in the development team, but I'm going to try to merge these patches into upstream Mesa. You can follow updates regarding this [here](https://gitlab.freedesktop.org/mesa/mesa/-/issues/3915). The patched version of the Mesa drivers can be found [here](https://gitlab.freedesktop.org/luigifcruz/mesa/-/commit/0b3d66b6d561b06daac06ecb00f984334e203519).
 
 > **Stop!** If you are looking for an easy way to run DOOM in your Pi, this is not a post for you. Try [chocolate-doom](https://www.makeuseof.com/tag/run-doom-raspberry-pi/) instead. This is a technical overview of the current state of the V3DV drivers with DOOM engines.
 

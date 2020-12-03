@@ -15,22 +15,16 @@ The Raspberry Pi Foundation is working with the Open-Source consultancy company 
 
 
 
+<link rel="stylesheet" href="https://luigi.ltd/assets/style.css">
 
-
-
-<link rel="stylesheet" href="https://luigi.ltd/css/style.min.css">
-
-
-  
-  
-  <link rel="stylesheet" href="https://luigi.ltd/css/color/green.min.css">
+  <link rel="stylesheet" href="https://luigi.ltd/assets/green.css">
 
 
 
 
 
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://luigi.ltd/img/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon" href="https://luigi.ltd/img/apple-touch-icon-192x192.png">
 
   <link rel="shortcut icon" href="https://luigi.ltd/favicon.ico">
 
@@ -47,11 +41,11 @@ The Raspberry Pi Foundation is working with the Open-Source consultancy company 
 
 <meta property="og:locale" content="en" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Trying To Run DOOM With The Raspberry Pi 4 Vulkan Driver :: Luigi Cruz - PU2SPY">
+<meta property="og:title" content="Trying To Run DOOM With The Raspberry Pi 4 Vulkan Driver">
 <meta property="og:description" content="Vulkan is the new kid in the block for GPU accelerated tasks for Computing and Graphics. This new standard was released by the Khronos Group in 2016. When compared to OpenGL, Vulkan gives the developer more control over the hardware. This approach is widely used by other standards like DirectX 12 and Metal.
 The Raspberry Pi Foundation is working with the Open-Source consultancy company called Igalia to develop Vulkan drivers for the Raspberry Pi 4 Broadcom SoC." />
 <meta property="og:url" content="https://luigi.ltd/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/" />
-<meta property="og:site_name" content="Trying To Run DOOM With The Raspberry Pi 4 Vulkan Driver" />
+<meta property="og:site_name" content="Luigi Cruz - PU2SPY" />
 
   <meta property="og:image" content="https://luigi.ltd/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/images/v3dv-pi-boot.jpg">
 
@@ -88,7 +82,9 @@ The Raspberry Pi Foundation is working with the Open-Source consultancy company 
 </a>
 
     </div>
-    <div class="menu-trigger">menu</div>
+    
+      <div class="menu-trigger">menu</div>
+    
   </div>
   
     <nav class="menu">
@@ -197,7 +193,7 @@ The Raspberry Pi Foundation is working with the Open-Source consultancy company 
         <p>Vulkan is the new kid in the block for GPU accelerated tasks for Computing and Graphics. This new standard was released by the Khronos Group in 2016. When compared to OpenGL, Vulkan gives the developer more control over the hardware. This approach is widely used by other standards like DirectX 12 and Metal.</p>
 <p>The Raspberry Pi Foundation is working with the Open-Source consultancy company called Igalia to develop <a href="https://www.raspberrypi.org/blog/vulkan-raspberry-pi-first-triangle/">Vulkan drivers</a> for the Raspberry Pi 4 Broadcom SoC. This driver called V3DV has recently <a href="https://www.raspberrypi.org/blog/vulkan-update-were-conformant/">become conformant</a> with the Vulkan v1.0 specification.</p>
 <p>Their roadmap for the future is to improve performance and upgrade the conformant version by supporting required features by the Vulkan Specification. That is interesting because, with a higher conformant version, you can run more Vulkan based software on your favorite Single Board Computer!</p>
-<p>My intention in trying to run DOOM games with this driver is to contribute to the development by identifying and requesting useful features used by real applications. I&rsquo;m not in the development team, but I&rsquo;m going to try to merge these patches into upstream Mesa. You can follow updates regarding this <a href="">here</a>.</p>
+<p>My intention in trying to run DOOM games with this driver is to contribute to the development by identifying and requesting useful features used by real applications. I&rsquo;m not in the development team, but I&rsquo;m going to try to merge these patches into upstream Mesa. You can follow updates regarding this <a href="https://gitlab.freedesktop.org/mesa/mesa/-/issues/3915">here</a>. The patched version of the Mesa drivers can be found <a href="https://gitlab.freedesktop.org/luigifcruz/mesa/-/commit/0b3d66b6d561b06daac06ecb00f984334e203519">here</a>.</p>
 <blockquote>
 <p><strong>Stop!</strong> If you are looking for an easy way to run DOOM in your Pi, this is not a post for you. Try <a href="https://www.makeuseof.com/tag/run-doom-raspberry-pi/">chocolate-doom</a> instead. This is a technical overview of the current state of the V3DV drivers with DOOM engines.</p>
 </blockquote>
@@ -301,13 +297,10 @@ The Raspberry Pi Foundation is working with the Open-Source consultancy company 
   </div>
 </footer>
 
+<script src="https://luigi.ltd/assets/main.js"></script>
+<script src="https://luigi.ltd/assets/prism.js"></script>
 
 
-
-
-
-<script src="https://luigi.ltd/js/menu.js"></script>
-<script src="https://luigi.ltd/js/prism.js"></script>
 
 
 <script data-goatcounter="https://luigi.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
