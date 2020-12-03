@@ -1,1 +1,210 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tags on Luigi Cruz - PU2SPY</title><link>https://luigi.ltd/tags/</link><description>Recent content in Tags on Luigi Cruz - PU2SPY</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2020 Luigi Cruz</copyright><lastBuildDate>Fri, 20 Sep 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://luigi.ltd/tags/index.xml" rel="self" type="application/rss+xml"/><item><title>Galileo</title><link>https://luigi.ltd/tags/galileo/</link><pubDate>Fri, 20 Sep 2019 00:00:00 +0000</pubDate><guid>https://luigi.ltd/tags/galileo/</guid><description/></item><item><title>GNSS</title><link>https://luigi.ltd/tags/gnss/</link><pubDate>Fri, 20 Sep 2019 00:00:00 +0000</pubDate><guid>https://luigi.ltd/tags/gnss/</guid><description/></item><item><title>LimeNET</title><link>https://luigi.ltd/tags/limenet/</link><pubDate>Fri, 20 Sep 2019 00:00:00 +0000</pubDate><guid>https://luigi.ltd/tags/limenet/</guid><description/></item><item><title>RaspberryPi</title><link>https://luigi.ltd/tags/raspberrypi/</link><pubDate>Fri, 20 Sep 2019 00:00:00 +0000</pubDate><guid>https://luigi.ltd/tags/raspberrypi/</guid><description/></item><item><title>GNURadio</title><link>https://luigi.ltd/tags/gnuradio/</link><pubDate>Fri, 23 Nov 2018 00:00:00 +0000</pubDate><guid>https://luigi.ltd/tags/gnuradio/</guid><description/></item><item><title>LimeSDR</title><link>https://luigi.ltd/tags/limesdr/</link><pubDate>Fri, 23 Nov 2018 00:00:00 +0000</pubDate><guid>https://luigi.ltd/tags/limesdr/</guid><description/></item><item><title>Radar</title><link>https://luigi.ltd/tags/radar/</link><pubDate>Fri, 23 Nov 2018 00:00:00 +0000</pubDate><guid>https://luigi.ltd/tags/radar/</guid><description/></item><item><title>SDR</title><link>https://luigi.ltd/tags/sdr/</link><pubDate>Fri, 23 Nov 2018 00:00:00 +0000</pubDate><guid>https://luigi.ltd/tags/sdr/</guid><description/></item><item><title>Satellite</title><link>https://luigi.ltd/tags/satellite/</link><pubDate>Mon, 12 Feb 2018 00:00:00 +0000</pubDate><guid>https://luigi.ltd/tags/satellite/</guid><description/></item><item><title>Outernet</title><link>https://luigi.ltd/tags/outernet/</link><pubDate>Fri, 04 Aug 2017 00:00:00 +0000</pubDate><guid>https://luigi.ltd/tags/outernet/</guid><description/></item><item><title>LRPT</title><link>https://luigi.ltd/tags/lrpt/</link><pubDate>Mon, 10 Jul 2017 00:00:00 +0000</pubDate><guid>https://luigi.ltd/tags/lrpt/</guid><description/></item><item><title>APT</title><link>https://luigi.ltd/tags/apt/</link><pubDate>Mon, 30 Jan 2017 00:00:00 +0000</pubDate><guid>https://luigi.ltd/tags/apt/</guid><description/></item><item><title>Satellites</title><link>https://luigi.ltd/tags/satellites/</link><pubDate>Mon, 30 Jan 2017 00:00:00 +0000</pubDate><guid>https://luigi.ltd/tags/satellites/</guid><description/></item><item><title>Arduino</title><link>https://luigi.ltd/tags/arduino/</link><pubDate>Mon, 12 Dec 2016 00:00:00 +0000</pubDate><guid>https://luigi.ltd/tags/arduino/</guid><description/></item><item><title>Magnets</title><link>https://luigi.ltd/tags/magnets/</link><pubDate>Mon, 12 Dec 2016 00:00:00 +0000</pubDate><guid>https://luigi.ltd/tags/magnets/</guid><description/></item><item><title>PID</title><link>https://luigi.ltd/tags/pid/</link><pubDate>Mon, 12 Dec 2016 00:00:00 +0000</pubDate><guid>https://luigi.ltd/tags/pid/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Luigi Cruz - PU2SPY</title>
+    <link>https://luigi.ltd/tags/</link>
+    <description>Recent content in Tags on Luigi Cruz - PU2SPY</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© 2020 Luigi Cruz</copyright>
+    <lastBuildDate>Wed, 02 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://luigi.ltd/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DOOM</title>
+      <link>https://luigi.ltd/tags/doom/</link>
+      <pubDate>Wed, 02 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/doom/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GZDOOM</title>
+      <link>https://luigi.ltd/tags/gzdoom/</link>
+      <pubDate>Wed, 02 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/gzdoom/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MESA</title>
+      <link>https://luigi.ltd/tags/mesa/</link>
+      <pubDate>Wed, 02 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/mesa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RaspberryPi</title>
+      <link>https://luigi.ltd/tags/raspberrypi/</link>
+      <pubDate>Wed, 02 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/raspberrypi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RBDOOM-3-BFG</title>
+      <link>https://luigi.ltd/tags/rbdoom-3-bfg/</link>
+      <pubDate>Wed, 02 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/rbdoom-3-bfg/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>V3DV</title>
+      <link>https://luigi.ltd/tags/v3dv/</link>
+      <pubDate>Wed, 02 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/v3dv/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vulkan</title>
+      <link>https://luigi.ltd/tags/vulkan/</link>
+      <pubDate>Wed, 02 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/vulkan/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Galileo</title>
+      <link>https://luigi.ltd/tags/galileo/</link>
+      <pubDate>Fri, 20 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/galileo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GNSS</title>
+      <link>https://luigi.ltd/tags/gnss/</link>
+      <pubDate>Fri, 20 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/gnss/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LimeNET</title>
+      <link>https://luigi.ltd/tags/limenet/</link>
+      <pubDate>Fri, 20 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/limenet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GNURadio</title>
+      <link>https://luigi.ltd/tags/gnuradio/</link>
+      <pubDate>Fri, 23 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/gnuradio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LimeSDR</title>
+      <link>https://luigi.ltd/tags/limesdr/</link>
+      <pubDate>Fri, 23 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/limesdr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Radar</title>
+      <link>https://luigi.ltd/tags/radar/</link>
+      <pubDate>Fri, 23 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/radar/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SDR</title>
+      <link>https://luigi.ltd/tags/sdr/</link>
+      <pubDate>Fri, 23 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/sdr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Satellite</title>
+      <link>https://luigi.ltd/tags/satellite/</link>
+      <pubDate>Mon, 12 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/satellite/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Outernet</title>
+      <link>https://luigi.ltd/tags/outernet/</link>
+      <pubDate>Fri, 04 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/outernet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LRPT</title>
+      <link>https://luigi.ltd/tags/lrpt/</link>
+      <pubDate>Mon, 10 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/lrpt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>APT</title>
+      <link>https://luigi.ltd/tags/apt/</link>
+      <pubDate>Mon, 30 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/apt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Satellites</title>
+      <link>https://luigi.ltd/tags/satellites/</link>
+      <pubDate>Mon, 30 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/satellites/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Arduino</title>
+      <link>https://luigi.ltd/tags/arduino/</link>
+      <pubDate>Mon, 12 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/arduino/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Magnets</title>
+      <link>https://luigi.ltd/tags/magnets/</link>
+      <pubDate>Mon, 12 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/magnets/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PID</title>
+      <link>https://luigi.ltd/tags/pid/</link>
+      <pubDate>Mon, 12 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/tags/pid/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

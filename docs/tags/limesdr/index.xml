@@ -1,2 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>LimeSDR on Luigi Cruz - PU2SPY</title><link>https://luigi.ltd/tags/limesdr/</link><description>Recent content in LimeSDR on Luigi Cruz - PU2SPY</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2020 Luigi Cruz</copyright><lastBuildDate>Fri, 23 Nov 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://luigi.ltd/tags/limesdr/index.xml" rel="self" type="application/rss+xml"/><item><title>Software Defined Doppler Radar with LimeSDR Mini</title><link>https://luigi.ltd/2018-11-23/software-defined-radar-cw-doppler-radar-with-limesdr/</link><pubDate>Fri, 23 Nov 2018 00:00:00 +0000</pubDate><guid>https://luigi.ltd/2018-11-23/software-defined-radar-cw-doppler-radar-with-limesdr/</guid><description>In this blog post, I’ll talk about my experiments with Software Defined Radar. This concept implies that radar systems can be simplified by abstracting analog hardware in favor of software implementations performing Digital Signal Processing inside a processor module. This is useful for aerospace applications. It lowers the complexity of the radar system consequently reducing the maintenance, weight and the probability of something misbehave in-flight.
-After reading about that, I wondered if it was possible to make something similar to reduce the number of expensive analog front-end parts needed for a radar system.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LimeSDR on Luigi Cruz - PU2SPY</title>
+    <link>https://luigi.ltd/tags/limesdr/</link>
+    <description>Recent content in LimeSDR on Luigi Cruz - PU2SPY</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© 2020 Luigi Cruz</copyright>
+    <lastBuildDate>Fri, 23 Nov 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://luigi.ltd/tags/limesdr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Software Defined Doppler Radar with LimeSDR Mini</title>
+      <link>https://luigi.ltd/2018-11-23/software-defined-radar-cw-doppler-radar-with-limesdr/</link>
+      <pubDate>Fri, 23 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/2018-11-23/software-defined-radar-cw-doppler-radar-with-limesdr/</guid>
+      <description>In this blog post, I’ll talk about my experiments with Software Defined Radar. This concept implies that radar systems can be simplified by abstracting analog hardware in favor of software implementations performing Digital Signal Processing inside a processor module. This is useful for aerospace applications. It lowers the complexity of the radar system consequently reducing the maintenance, weight and the probability of something misbehave in-flight.
+After reading about that, I wondered if it was possible to make something similar to reduce the number of expensive analog front-end parts needed for a radar system.</description>
+    </item>
+    
+  </channel>
+</rss>
