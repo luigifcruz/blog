@@ -1,186 +1,114 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://luigi.ltd/</loc>
     <lastmod>2020-12-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/doom/</loc>
     <lastmod>2020-12-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/gzdoom/</loc>
     <lastmod>2020-12-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/mesa/</loc>
     <lastmod>2020-12-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/posts/</loc>
     <lastmod>2020-12-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/raspberrypi/</loc>
     <lastmod>2020-12-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/rbdoom-3-bfg/</loc>
     <lastmod>2020-12-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/</loc>
     <lastmod>2020-12-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/</loc>
     <lastmod>2020-12-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/v3dv/</loc>
     <lastmod>2020-12-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/vulkan/</loc>
     <lastmod>2020-12-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/galileo/</loc>
     <lastmod>2019-09-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/gnss/</loc>
     <lastmod>2019-09-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/limenet/</loc>
     <lastmod>2019-09-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/2019-09-20/using-limenet-internal-gnss-constellation-monitor/</loc>
     <lastmod>2019-09-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/gnuradio/</loc>
     <lastmod>2018-11-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/limesdr/</loc>
     <lastmod>2018-11-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/radar/</loc>
     <lastmod>2018-11-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/sdr/</loc>
     <lastmod>2018-11-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/2018-11-23/software-defined-radar-cw-doppler-radar-with-limesdr/</loc>
     <lastmod>2018-11-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/2018-02-12/reverse-engineering-goes-cda-telemetry/</loc>
     <lastmod>2018-02-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/satellite/</loc>
     <lastmod>2018-02-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/outernet/</loc>
     <lastmod>2017-08-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/2017-08-04/outernet-receiver-with-a-wifi-grid-antenna/</loc>
     <lastmod>2017-08-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/lrpt/</loc>
     <lastmod>2017-07-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/2017-07-10/receiving-and-demodulating-the-lrpt-signal/</loc>
     <lastmod>2017-07-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/apt/</loc>
     <lastmod>2017-01-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/2017-01-30/making-a-quadrifilar-antenna-for-noaa-apt/</loc>
     <lastmod>2017-01-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/satellites/</loc>
     <lastmod>2017-01-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/arduino/</loc>
     <lastmod>2016-12-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/magnets/</loc>
     <lastmod>2016-12-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/2016-12-12/making-an-arduino-based-levitron/</loc>
     <lastmod>2016-12-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/tags/pid/</loc>
     <lastmod>2016-12-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/about/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/categories/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://luigi.ltd/contact/</loc>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://luigi.ltd/donate/</loc>
+  </url><url>
     <loc>https://luigi.ltd/projects/</loc>
   </url>
-  
 </urlset>

@@ -104,7 +104,17 @@ This website is for documenting the projects that I worked on. They are going to
       
       <guid>https://luigi.ltd/contact/</guid>
       <description>Feel free to contact me anytime!
- HAM Callsign: PU2SPY Private E-Mail: #span-1dc3c499.cloaked-e-mail:before { content:attr(data-domain) &#34;\0040&#34; attr(data-user); unicode-bidi:bidi-override; direction:rtl; }  &amp;#32;&amp;#32; var scriptTag = document.getElementById(&#34;script-1dc3c499&#34;); var link = document.createElement(&#34;a&#34;); var address = &#34;zurcfigiul&#34;.split(&#39;&#39;).reverse().join(&#39;&#39;) + &#34;@&#34; + &#34;moc.liamg&#34;.split(&#39;&#39;).reverse().join(&#39;&#39;); link.href = &#34;mailto&#34; + &#34;:&#34; + address; link.innerText = address.split(&#39;?&#39;)[0]; scriptTag.parentElement.insertBefore(link, scriptTag.previousElementSibling); scriptTag.parentElement.removeChild(scriptTag.previousElementSibling)   Secure E-Mail: #span-6fa88e4a.cloaked-e-mail:before { content:attr(data-domain) &#34;\0040&#34; attr(data-user); unicode-bidi:bidi-override; direction:rtl; }  &amp;#32;&amp;#32; var scriptTag = document.getElementById(&#34;script-6fa88e4a&#34;); var link = document.</description>
+ HAM Callsign: PU2SPY Private E-Mail: #span-514cab06.cloaked-e-mail:before { content:attr(data-domain) &#34;\0040&#34; attr(data-user); unicode-bidi:bidi-override; direction:rtl; }  &amp;#32;&amp;#32; var scriptTag = document.getElementById(&#34;script-514cab06&#34;); var link = document.createElement(&#34;a&#34;); var address = &#34;zurcfigiul&#34;.split(&#39;&#39;).reverse().join(&#39;&#39;) + &#34;@&#34; + &#34;moc.liamg&#34;.split(&#39;&#39;).reverse().join(&#39;&#39;); link.href = &#34;mailto&#34; + &#34;:&#34; + address; link.innerText = address.split(&#39;?&#39;)[0]; scriptTag.parentElement.insertBefore(link, scriptTag.previousElementSibling); scriptTag.parentElement.removeChild(scriptTag.previousElementSibling)   Secure E-Mail: #span-2737c70c.cloaked-e-mail:before { content:attr(data-domain) &#34;\0040&#34; attr(data-user); unicode-bidi:bidi-override; direction:rtl; }  &amp;#32;&amp;#32; var scriptTag = document.getElementById(&#34;script-2737c70c&#34;); var link = document.</description>
+    </item>
+    
+    <item>
+      <title>Donate</title>
+      <link>https://luigi.ltd/donate/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://luigi.ltd/donate/</guid>
+      <description>Funding If you like my work and want to support my Open-Source Projects, now you can! Your financial support would not only help offset operational costs but also help me dedicate more time to my open-source projects.
+ PayPal Patreon Buy Me a Coffee Book  </description>
     </item>
     
     <item>
