@@ -20,26 +20,24 @@ This website is for documenting the projects that I worked on. They are going to
 ## Talks & Presentations
 These are my talks, here you can find the slides and the video if they were recorded. If you have any question, don't hesitate to [contact me](/contact)!
 
-##### Cyberspectrum #23 - WirelessVillage DEFCON
-<cite>August 2018 - Caesars Palace, Las Vegas - USA</cite> &mdash; Talk about the development of the Open Satellite Project software to demodulate, decode and parse data sent from the new generation of weather satellites from NASA and NOAA (NPOESS/NPP) via the High Data Rate X-Band Datalink.
-
-{{< youtube Q6ITlQYNVDQ >}}
-
-##### Equinix Interview - PiSDR Metal Meets Radio
-<cite>May 6 - Livestream</cite> &mdash; Me, Jeremy, and Ed talk about Software Defined Radio and ARM Single Board Computers.
+##### Equinix Interview - Metal Meets: Radio
+<cite>March, 2020 - Livestream</cite> &mdash; Me, Jeremy, and Ed talk about Software Defined Radio and ARM Single Board Computers and PiSDR.
 
 {{< youtube 6h2tfoe-SIM >}}
 
-> [Read the Slides](/media/open_satellite_project_2nd_labre.pdf)
+##### Cyberspectrum #23 - WirelessVillage DEFCON
+<cite>August, 2018 - Caesars Palace, Las Vegas - USA</cite> &mdash; Talk about the development of the Open Satellite Project software to demodulate, decode and parse data sent from the new generation of weather satellites from NASA and NOAA (NPOESS/NPP) via the High Data Rate X-Band Datalink.
 
-##### AMSAT-BR & LABRE - Satellite Amateur Workshop
-<cite>November 2017 - Pardinho, São Paulo - Brazil</cite> &mdash; Introductory talk about Open Satellite Project software. From geostationary satellites to polar-orbiting X-Band satellites.
-
-> [Read the Slides](/media/open_satellite_project_2nd_labre.pdf)
+{{< youtube Q6ITlQYNVDQ >}}
 
 > [Read the Slides](/media/XBand_Satellites_Datalink.pdf)
 
+##### AMSAT-BR & LABRE - Satellite Amateur Workshop
+<cite>November, 2017 - Pardinho, São Paulo - Brazil</cite> &mdash; Introductory talk about Open Satellite Project software. From geostationary satellites to polar-orbiting X-Band satellites.
+
+> [Read the Slides](/media/open_satellite_project_2nd_labre.pdf)
+
 ##### Campus Party Brasil 11 `[PT-BR]`
-<cite>February 2018 - Anhembi Convention Center, Brazil</cite> &mdash; Talk with [Lucas Teske](https://twitter.com/lucasteske) about the software stack provided by the Open Satellite Project to decode, demodulate and parse weather satellite data from sun-synchronous or geostationary orbits.
+<cite>February, 2018 - Anhembi Convention Center, Brazil</cite> &mdash; Talk with [Lucas Teske](https://twitter.com/lucasteske) about the software stack provided by the Open Satellite Project to decode, demodulate and parse weather satellite data from sun-synchronous or geostationary orbits.
 
 {{< youtube 6-DszQuLtgs >}}
