@@ -8,7 +8,7 @@ enableRobotsTXT = true
 [params]
   contentTypeName = "posts"
   themeColor = "green"
-  showMenuItems = 5
+  showMenuItems = 6
   showLanguageSelector = false
   fullWidthTheme = false
   centerTheme = true
