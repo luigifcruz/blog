@@ -1,15 +1,23 @@
-name: CI
+name: hugo-latest-cd
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches:
+      - master
+
+env:
+  TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  HUGO_ARGS: '--minify'
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
-      - name: Build & Deploy with Latest Hugo
-        uses: victoriadrake/hugo-latest-cd@v1.2
+      - name: 🛎 Check out master
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+      - name: 🚀 Build and deploy
+        uses: victoriadrake/hugo-latest-cd@master
