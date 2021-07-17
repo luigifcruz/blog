@@ -7,8 +7,7 @@ showFullContent = false
 Feel free to contact me anytime!
 
 - HAM Callsign: PU2SPY
-- Private E-Mail: {{< cloakemail "luigifcruz@gmail.com" >}}
-- Secure E-Mail: {{< cloakemail "luigifcruz@protonmail.com" >}}
+- E-Mail: {{< cloakemail "contact@luigi.ltd" >}}
 - GitHub: [@luigifcruz](https://github.com.luigifcruz)
 - Twitter: [@luigifcruz](http://twitter.com/luigifcruz)
 - Keybase: [@luigifcruz](https://keybase.io/luigifcruz)
