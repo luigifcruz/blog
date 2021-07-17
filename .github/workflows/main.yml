@@ -19,5 +19,6 @@ jobs:
         uses: actions/checkout@master
         with:
           fetch-depth: 1
+          submodules: 'recursive'
       - name: 🚀 Build and deploy
         uses: victoriadrake/hugo-latest-cd@master
