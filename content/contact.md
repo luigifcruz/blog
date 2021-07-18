@@ -6,7 +6,7 @@ showFullContent = false
 
 Feel free to contact me anytime!
 
-- E-Mail: {{< cloakemail "contact@luigi.ltd" >}}
+- E-Mail: {{< cloakemail "luigifcruz@gmail.com" >}}
 - GitHub: [@luigifcruz](https://github.com.luigifcruz)
 - Twitter: [@luigifcruz](http://twitter.com/luigifcruz)
 - Keybase: [@luigifcruz](https://keybase.io/luigifcruz)
