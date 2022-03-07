@@ -1,15 +1,217 @@
-<!doctype html><html lang=en><head><title>Monitoring GNSS Constellations with Galmon Using the LimeNET Micro Ublox-M8 Module :: Luigi Cruz - PU2SPY</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="In this blog post, I will explain how I managed to get a GNSS multi-constellation monitor called Galmon working on my LimeNET Micro. The Galmon project is a crowdsourcing tool developed by @PowerDNS_Bert to monitor the health status of GNSS constellations including the GPS, GLONASS, BeiDou and more notably Galileo. The project relies on volunteers to set up inexpensive stations based on the Ublox-M8 module to receive GNSS packets and send diagnostic data back to an aggregator."><meta name=keywords content="SDRs,Raspberry Pi,Machine Learning,Parallel Computing,Satellites,Python,C++,Golang"><meta name=robots content="noodp"><link rel=canonical href=https://luigi.ltd/2019-09-20/using-limenet-internal-gnss-constellation-monitor/><link rel=stylesheet href=https://luigi.ltd/assets/style.css><link rel=stylesheet href=https://luigi.ltd/assets/green.css><link rel=apple-touch-icon href=https://luigi.ltd/img/apple-touch-icon-192x192.png><link rel="shortcut icon" href=https://luigi.ltd/favicon.ico><meta name=twitter:card content="summary"><meta name=twitter:site content="https://twitter.com/luigifcruz"><meta name=twitter:creator content="luigifcruz"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="og:title" content="Monitoring GNSS Constellations with Galmon Using the LimeNET Micro Ublox-M8 Module"><meta property="og:description" content="In this blog post, I will explain how I managed to get a GNSS multi-constellation monitor called Galmon working on my LimeNET Micro. The Galmon project is a crowdsourcing tool developed by @PowerDNS_Bert to monitor the health status of GNSS constellations including the GPS, GLONASS, BeiDou and more notably Galileo. The project relies on volunteers to set up inexpensive stations based on the Ublox-M8 module to receive GNSS packets and send diagnostic data back to an aggregator."><meta property="og:url" content="https://luigi.ltd/2019-09-20/using-limenet-internal-gnss-constellation-monitor/"><meta property="og:site_name" content="Luigi Cruz - PU2SPY"><meta property="og:image" content="https://luigi.ltd/2019-09-20/using-limenet-internal-gnss-constellation-monitor/images/limenet-gnss-module.jpg"><meta property="og:image:width" content="2048"><meta property="og:image:height" content="1024"><meta property="article:published_time" content="2019-09-20 00:00:00 +0000 UTC"></head><body class=green><div class="container center headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=/><div class=logo>Luigi Cruz</div></a></div><div class=menu-trigger>menu</div></div><nav class=menu><ul class="menu__inner menu__inner--desktop"><li><a href=/about>About</a></li><li><a href=/projects>Projects</a></li><li><a href=/contact>Contact</a></li><li><a href=/donate>Donate</a></li><li><a href=https://twitter.com/luigifcruz>Twitter</a></li><li><a href=https://github.com/luigifcruz>Github</a></li></ul><ul class="menu__inner menu__inner--mobile"><li><a href=/about>About</a></li><li><a href=/projects>Projects</a></li><li><a href=/contact>Contact</a></li><li><a href=/donate>Donate</a></li><li><a href=https://twitter.com/luigifcruz>Twitter</a></li><li><a href=https://github.com/luigifcruz>Github</a></li></ul></nav></header><div class=content><div class=post><h1 class=post-title><a href=https://luigi.ltd/2019-09-20/using-limenet-internal-gnss-constellation-monitor/>Monitoring GNSS Constellations with Galmon Using the LimeNET Micro Ublox-M8 Module</a></h1><div class=post-meta><span class=post-date>2019-09-20</span>
-<span class=post-author>:: Luigi Cruz</span></div><span class=post-tags>#<a href=https://luigi.ltd/tags/limenet/>LimeNET</a>&nbsp;
-#<a href=https://luigi.ltd/tags/gnss/>GNSS</a>&nbsp;
-#<a href=https://luigi.ltd/tags/galileo/>Galileo</a>&nbsp;
-#<a href=https://luigi.ltd/tags/raspberrypi/>RaspberryPi</a>&nbsp;</span>
-<img src=https://luigi.ltd/2019-09-20/using-limenet-internal-gnss-constellation-monitor/images/limenet-gnss-module.jpg class=post-cover alt="Monitoring GNSS Constellations with Galmon Using the LimeNET Micro Ublox-M8 Module"><div class=post-content><div><p>In this blog post, I will explain how I managed to get a GNSS multi-constellation monitor called Galmon working on my LimeNET Micro. The Galmon project is a crowdsourcing tool developed by <a href=https://twitter.com/PowerDNS_Bert>@PowerDNS_Bert</a> to monitor the health status of GNSS constellations including the GPS, GLONASS, BeiDou and more notably Galileo. The project relies on volunteers to set up inexpensive stations based on the Ublox-M8 module to receive GNSS packets and send diagnostic data back to an aggregator.</p><p>This data gathering has <a href="https://twitter.com/GalileoSats/status/1169160015829225472?s=20">already proven</a> to be very useful to diagnose if something weird is happening. This monitoring system can be particularly fun since the European GNSS System called Galileo is on its early operational state. The European Global Navigation System was initially proposed in 1999 with the first operational launch happening in 2011. Even though this project is almost as old as me it&rsquo;s still encountering some trouble. From failed to reach orbit early <a href=https://www.theguardian.com/technology/2014/aug/24/galileo-gps-satellites-launched-into-wrong-orbit>launches</a> to failing onboard <a href=https://spacenews.com/rash-of-galileo-clock-failures-cast-doubt-on-timing-of-upcoming-launches/>atomic clocks</a> and more recently the week-long widespread <a href=https://www.wired.com/story/galileo-satellite-outage-gps/>outage</a>.</p><h2 id=hardware>Hardware<a href=#hardware class=hanchor arialabel=Anchor>&#8983;</a></h2><p>I bought an Ublox NEO-M8N module from China for another project last year. But I ended up with a counterfeit unit without the specified Flash memory. This non-volatile memory is supposed to save the current configuration and store the firmware upgrade once is installed. This isn&rsquo;t a huge problem since I can automatically configure the module each time I power it up. But unfortunately, my unit also has an ancient firmware that doesn&rsquo;t even support the Galileo and BeiDou constellations. Ohh well, next option&mldr;</p><p>Lime Microsystems kindly sent me a unit of their newest SDR board, the LimeNET Micro. This is an amateur version of the original carrier-grade LimeNET founded on Crowd Supply a couple of years ago. This newer version is basically a LimeSDR Mini integrated with a Raspberry Pi Compute Module 3+ in a single PCB. Like his older brother, this version is meant to be used mainly for a cellular micro base station. I&rsquo;ll give more details in the full review article coming soon. But for now, let&rsquo;s talk about the awesome (and 100% genuine) built-in GNSS module.</p><p>Since this unit is meant to be used as a cellular base station, it is designed to have an extremely precise oscillator (+/- 5 ppb). Which is much better than the LimeSDR Mini (+/- 4 ppm). This is archived by an onboard OCXO locked with the GNSS atomic clocks. To do that, the PLL uses the PPS signal generated by the built-in Ublox NEO-M8Q GNSS module. This is an extremely popular GNSS module capable to receive up to three systems simultaneously like GPS, Galileo and one of BeiDou or GLONASS.</p><p>The GNSS Module Serial TX pin is connected to the Raspberry Pi Serial RX by default. This is fine if you only want to receive the standard NMEA. But this isn&rsquo;t enough for this project. We need a bi-directional communication between the Raspberry Pi and the module to configure it properly. Luckily, the LimeNET team left some <a href=https://discourse.myriadrf.org/t/gps-on-usb/4670/2>options</a> for us:</p><ul><li><strong>Serial Interface:</strong> Connect the GNSS RX to the RPi TX by soldering one 0R resistor to R57. The location of this resistor is quite difficult to access. Since the LimeSDR also interfaces with the GNSS module using this port, the FPGA GNSS TX Pin shouldn&rsquo;t be configured as OUTPUT.</li><li><strong>USB Virtual Serial Interface:</strong> Connect the USB Differential Data Pins by soldering two 0R resistors to R96 and R97. The location of these resistors is on the top of the unit facilitating a lot the soldering process.</li></ul><p>Since I plan to use the Serial Interface for an upcoming project. I decided to use the USB Serial Interface. The soldering was quite easy to make using a cheap fixed temperature soldering iron. Keep in mind that this process can damage your board if too much heat gets applied in the wrong spot. If you aren&rsquo;t confident enough, try to train with some dead PCB before attempting this. After the soldering process was done, the Ublox module showed up in the Linux USB Stack. Please note that no installation is required to be able to see the module in this list. Consider reworking your solder if none is found.</p><pre><code>$ lsusb
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Monitoring GNSS Constellations with Galmon Using the LimeNET Micro Ublox-M8 Module :: Luigi Cruz - PU2SPY</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="In this blog post, I will explain how I managed to get a GNSS multi-constellation monitor called Galmon working on my LimeNET Micro. The Galmon project is a crowdsourcing tool developed by @PowerDNS_Bert to monitor the health status of GNSS constellations including the GPS, GLONASS, BeiDou and more notably Galileo. The project relies on volunteers to set up inexpensive stations based on the Ublox-M8 module to receive GNSS packets and send diagnostic data back to an aggregator." />
+<meta name="keywords" content="SDRs, Raspberry Pi, Machine Learning, Parallel Computing, Satellites, Python, C&#43;&#43;, Golang" />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://luigi.ltd/2019-09-20/using-limenet-internal-gnss-constellation-monitor/" />
+
+
+
+
+<link rel="stylesheet" href="https://luigi.ltd/assets/style.css">
+
+  <link rel="stylesheet" href="https://luigi.ltd/assets/green.css">
+
+
+
+
+
+
+<link rel="apple-touch-icon" href="https://luigi.ltd/img/apple-touch-icon-192x192.png">
+
+  <link rel="shortcut icon" href="https://luigi.ltd/favicon.ico">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="https://twitter.com/luigifcruz" />
+  
+    <meta name="twitter:creator" content="luigifcruz" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Monitoring GNSS Constellations with Galmon Using the LimeNET Micro Ublox-M8 Module">
+<meta property="og:description" content="In this blog post, I will explain how I managed to get a GNSS multi-constellation monitor called Galmon working on my LimeNET Micro. The Galmon project is a crowdsourcing tool developed by @PowerDNS_Bert to monitor the health status of GNSS constellations including the GPS, GLONASS, BeiDou and more notably Galileo. The project relies on volunteers to set up inexpensive stations based on the Ublox-M8 module to receive GNSS packets and send diagnostic data back to an aggregator." />
+<meta property="og:url" content="https://luigi.ltd/2019-09-20/using-limenet-internal-gnss-constellation-monitor/" />
+<meta property="og:site_name" content="Luigi Cruz - PU2SPY" />
+
+  <meta property="og:image" content="https://luigi.ltd/2019-09-20/using-limenet-internal-gnss-constellation-monitor/images/limenet-gnss-module.jpg">
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+
+  <meta property="article:published_time" content="2019-09-20 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Luigi Cruz
+  </div>
+</a>
+
+    </div>
+    
+      <div class="menu-trigger">menu</div>
+    
+  </div>
+  
+    <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/projects">Projects</a></li>
+        
+      
+        
+          <li><a href="/contact">Contact</a></li>
+        
+      
+        
+          <li><a href="https://twitter.com/luigifcruz">Twitter</a></li>
+        
+      
+        
+          <li><a href="https://github.com/luigifcruz">Github</a></li>
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/luigifc/">LinkedIn</a></li>
+        
+      
+      
+    
+
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/projects">Projects</a></li>
+      
+    
+      
+        <li><a href="/contact">Contact</a></li>
+      
+    
+      
+        <li><a href="https://twitter.com/luigifcruz">Twitter</a></li>
+      
+    
+      
+        <li><a href="https://github.com/luigifcruz">Github</a></li>
+      
+    
+      
+        <li><a href="https://www.linkedin.com/in/luigifc/">LinkedIn</a></li>
+      
+    
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<div class="post">
+  <h1 class="post-title">
+    <a href="https://luigi.ltd/2019-09-20/using-limenet-internal-gnss-constellation-monitor/">Monitoring GNSS Constellations with Galmon Using the LimeNET Micro Ublox-M8 Module</a></h1>
+  <div class="post-meta">
+    
+      <span class="post-date">
+        2019-09-20 
+      </span>
+    
+    
+    <span class="post-author">:: Luigi Cruz</span>
+    
+  </div>
+
+  
+  <span class="post-tags">
+    
+    #<a href="https://luigi.ltd/tags/limenet/">LimeNET</a>&nbsp;
+    
+    #<a href="https://luigi.ltd/tags/gnss/">GNSS</a>&nbsp;
+    
+    #<a href="https://luigi.ltd/tags/galileo/">Galileo</a>&nbsp;
+    
+    #<a href="https://luigi.ltd/tags/raspberrypi/">RaspberryPi</a>&nbsp;
+    
+  </span>
+  
+
+  
+    <img src="https://luigi.ltd/2019-09-20/using-limenet-internal-gnss-constellation-monitor/images/limenet-gnss-module.jpg" class="post-cover" alt="Monitoring GNSS Constellations with Galmon Using the LimeNET Micro Ublox-M8 Module" />
+  
+
+  
+
+  <div class="post-content"><div>
+        <p>In this blog post, I will explain how I managed to get a GNSS multi-constellation monitor called Galmon working on my LimeNET Micro. The Galmon project is a crowdsourcing tool developed by <a href="https://twitter.com/PowerDNS_Bert">@PowerDNS_Bert</a> to monitor the health status of GNSS constellations including the GPS, GLONASS, BeiDou and more notably Galileo. The project relies on volunteers to set up inexpensive stations based on the Ublox-M8 module to receive GNSS packets and send diagnostic data back to an aggregator.</p>
+<p>This data gathering has <a href="https://twitter.com/GalileoSats/status/1169160015829225472?s=20">already proven</a> to be very useful to diagnose if something weird is happening. This monitoring system can be particularly fun since the European GNSS System called Galileo is on its early operational state. The European Global Navigation System was initially proposed in 1999 with the first operational launch happening in 2011. Even though this project is almost as old as me it&rsquo;s still encountering some trouble. From failed to reach orbit early <a href="https://www.theguardian.com/technology/2014/aug/24/galileo-gps-satellites-launched-into-wrong-orbit">launches</a> to failing onboard <a href="https://spacenews.com/rash-of-galileo-clock-failures-cast-doubt-on-timing-of-upcoming-launches/">atomic clocks</a> and more recently the week-long widespread <a href="https://www.wired.com/story/galileo-satellite-outage-gps/">outage</a>.</p>
+<h2 id="hardware">Hardware<a href="#hardware" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>I bought an Ublox NEO-M8N module from China for another project last year. But I ended up with a counterfeit unit without the specified Flash memory. This non-volatile memory is supposed to save the current configuration and store the firmware upgrade once is installed. This isn&rsquo;t a huge problem since I can automatically configure the module each time I power it up. But unfortunately, my unit also has an ancient firmware that doesn&rsquo;t even support the Galileo and BeiDou constellations. Ohh well, next option&hellip;</p>
+<p>Lime Microsystems kindly sent me a unit of their newest SDR board, the LimeNET Micro. This is an amateur version of the original carrier-grade LimeNET founded on Crowd Supply a couple of years ago. This newer version is basically a LimeSDR Mini integrated with a Raspberry Pi Compute Module 3+ in a single PCB. Like his older brother, this version is meant to be used mainly for a cellular micro base station. I&rsquo;ll give more details in the full review article coming soon. But for now, let&rsquo;s talk about the awesome (and 100% genuine) built-in GNSS module.</p>
+<p>Since this unit is meant to be used as a cellular base station, it is designed to have an extremely precise oscillator (+/- 5 ppb). Which is much better than the LimeSDR Mini (+/- 4 ppm). This is archived by an onboard OCXO locked with the GNSS atomic clocks. To do that, the PLL uses the PPS signal generated by the built-in Ublox NEO-M8Q GNSS module. This is an extremely popular GNSS module capable to receive up to three systems simultaneously like GPS, Galileo and one of BeiDou or GLONASS.</p>
+<p>The GNSS Module Serial TX pin is connected to the Raspberry Pi Serial RX by default. This is fine if you only want to receive the standard NMEA. But this isn&rsquo;t enough for this project. We need a bi-directional communication between the Raspberry Pi and the module to configure it properly. Luckily, the LimeNET team left some <a href="https://discourse.myriadrf.org/t/gps-on-usb/4670/2">options</a> for us:</p>
+<ul>
+<li><strong>Serial Interface:</strong> Connect the GNSS RX to the RPi TX by soldering one 0R resistor to R57. The location of this resistor is quite difficult to access. Since the LimeSDR also interfaces with the GNSS module using this port, the FPGA GNSS TX Pin shouldn&rsquo;t be configured as OUTPUT.</li>
+<li><strong>USB Virtual Serial Interface:</strong> Connect the USB Differential Data Pins by soldering two 0R resistors to R96 and R97. The location of these resistors is on the top of the unit facilitating a lot the soldering process.</li>
+</ul>
+<p>Since I plan to use the Serial Interface for an upcoming project. I decided to use the USB Serial Interface. The soldering was quite easy to make using a cheap fixed temperature soldering iron. Keep in mind that this process can damage your board if too much heat gets applied in the wrong spot. If you aren&rsquo;t confident enough, try to train with some dead PCB before attempting this. After the soldering process was done, the Ublox module showed up in the Linux USB Stack. Please note that no installation is required to be able to see the module in this list. Consider reworking your solder if none is found.</p>
+<pre tabindex="0"><code>$ lsusb
 Bus 001 Device 005: ID 0403:601f Future Technology Devices International, Ltd
 Bus 001 Device 004: ID 1546:01a8 U-Blox AG
 Bus 001 Device 003: ID 0424:ec00 Standard Microsystems Corp. SMSC9512/9514 Fast Ethernet Adapter
 Bus 001 Device 002: ID 0424:9514 Standard Microsystems Corp. SMC9514 Hub
 Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-</code></pre><h2 id=software>Software<a href=#software class=hanchor arialabel=Anchor>&#8983;</a></h2><p>The software that inspired this whole project, as previously said, is called Galmon and was written by <a href=https://twitter.com/PowerDNS_Bert>@PowerDNS_Bert</a>. The GNSS module configuration and data extraction from the RAW frames is meticulously explained by his <a href=https://ds9a.nl/articles/posts/galileo-notes/>blog post</a>. This process is quite convoluted but in short, the software configures the Ublox NEO-M8 to start listening to multiple GNSS services at once and instructed to dump all the RAW frames (UBX-RXM-SFRBX) into the serial port (the USB Virtual Serial Port in my case). The received data is then processed by Galmon and stored on a local log file. This data can also be uploaded in real-time to the <a href=https://galmon.eu>galmon.eu</a> pool. This global crowdsource of GNSS data enables Galmon to accurately monitor the health status of a big part of all GNSS constellations of the planet.</p><p>After cloning the project&rsquo;s <a href=https://github.com/ahupowerdns/galmon>repository</a> on GitHub, the installation process went smoothly by following the installation instructions available in the readme file. Once the compilation was succeeded, I went ahead and started listening to the Ublox Module via the serial port with &ldquo;ubxtool&rdquo; and started the web-based monitor called &ldquo;navparse&rdquo;.</p><pre><code>$ ./ubxtool --gps --glonass --galileo --wait /dev/ttyACM0 1 | ./navparse 0.0.0.0:10000 html null
+</code></pre><h2 id="software">Software<a href="#software" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>The software that inspired this whole project, as previously said, is called Galmon and was written by <a href="https://twitter.com/PowerDNS_Bert">@PowerDNS_Bert</a>. The GNSS module configuration and data extraction from the RAW frames is meticulously explained by his <a href="https://ds9a.nl/articles/posts/galileo-notes/">blog post</a>. This process is quite convoluted but in short, the software configures the Ublox NEO-M8 to start listening to multiple GNSS services at once and instructed to dump all the RAW frames (UBX-RXM-SFRBX) into the serial port (the USB Virtual Serial Port in my case). The received data is then processed by Galmon and stored on a local log file. This data can also be uploaded in real-time to the <a href="https://galmon.eu">galmon.eu</a> pool. This global crowdsource of GNSS data enables Galmon to accurately monitor the health status of a big part of all GNSS constellations of the planet.</p>
+<p>After cloning the project&rsquo;s <a href="https://github.com/ahupowerdns/galmon">repository</a> on GitHub, the installation process went smoothly by following the installation instructions available in the readme file. Once the compilation was succeeded, I went ahead and started listening to the Ublox Module via the serial port with &ldquo;ubxtool&rdquo; and started the web-based monitor called &ldquo;navparse&rdquo;.</p>
+<pre tabindex="0"><code>$ ./ubxtool --gps --glonass --galileo --wait /dev/ttyACM0 1 | ./navparse 0.0.0.0:10000 html null
 Listening on 0.0.0.0:10000                                                                                                                                          
 Sending version query                                                                                                                                               
 swVersion: ROM CORE 3.01 (107888)                                                                                                                                   
@@ -49,11 +251,114 @@ Enabling UBX-NAV-PVT
 Entering main loop
 src 11 currently receiving: 2,24@1
 src 11 currently receiving: 0,2@0 0,12@0 0,15@0 0,24@0 0,25@0 0,29@0 0,32@0 2,11@1 2,14@1 2,24@1 2,25@1 2,36@1 6,15@0 6,16@0 6,17@0 6,18@0
-</code></pre><p>This command creates a web dashboard to monitor the current satellites being received by your station in real-time. This panel shows a bunch of cool diagnostics for each satellite, like health status, elevation, signal-to-noise ratio, and ephemeris age. To start feeding the observation data to the central Galmon server you need to ask for a callsign and server address to <a href=https://twitter.com/GalileoSats>@GalileoSats</a> on Twitter. By doing this, your station will be shown in the <a href=https://galmon.eu/geo/>Earth Map</a> with an estimated position.</p><img sizes="(min-width: 35em) 1200px, 100vw" srcset="/2019-09-20/using-limenet-internal-gnss-constellation-monitor/images/galmon-dashboard_huc16878b57ba1eb33fe7413202d99525f_296091_0f7bb2b22a597781df610633314f6ec9.jpg 500w
-, /2019-09-20/using-limenet-internal-gnss-constellation-monitor/images/galmon-dashboard_huc16878b57ba1eb33fe7413202d99525f_296091_44f099436371235efacb32296f9cf0b8.jpg 800w
-, /2019-09-20/using-limenet-internal-gnss-constellation-monitor/images/galmon-dashboard_huc16878b57ba1eb33fe7413202d99525f_296091_7b900c83fb9d31e12d2869d8311a5d8e.jpg 1200w
-, /2019-09-20/using-limenet-internal-gnss-constellation-monitor/images/galmon-dashboard_huc16878b57ba1eb33fe7413202d99525f_296091_1311x0_resize_q95_bgffffff_linear_2.jpg 1311w" src=/2019-09-20/using-limenet-internal-gnss-constellation-monitor/images/galmon-dashboard_huc16878b57ba1eb33fe7413202d99525f_296091_1311x0_resize_q95_bgffffff_linear_2.jpg alt><p><strong>Disclaimer:</strong> The article made possible by the LimeNET Micro sample sent for me free of charge by Lime Microsystems. No compensation was requested or provided. Opinions are completely mine and no copy approval was given. You are seeing this post at the same time as they are.</p><br><div class="index-content framed"><h1 id=hello-there-im-luigi>Hello there, I&rsquo;m Luigi!<a href=#hello-there-im-luigi class=hanchor arialabel=Anchor>&#8983;</a></h1><p>I&rsquo;m a Computer Engineering Student and Radio Amateur (PU2SPY). Here you can find information <a href=/about>about me</a> and my <a href=/projects>projects</a>. I talk about SDRs, Raspberry Pi, Machine Learning, Parallel Computing, Satellites, Python, C++, and Golang.</p><p><a href=https://twitter.com/luigifcruz>Twitter</a> | <a href=https://github.com/luigifcruz>Github</a> | <a href=https://www.patreon.com/luigifcruz>Patreon</a> | <a href=https://www.buymeacoffee.com/luigi>Buy Me a <del>Coffee</del> Book</a> | <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TAA65AJMC7498&source=url">PayPal</a></p><p><em>Thanks for visiting!</em></p></div></div></div><div class=pagination><div class=pagination__title><span class=pagination__title-h>Read other posts</span><hr></div><div class=pagination__buttons><span class="button previous"><a href=https://luigi.ltd/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/><span class=button__icon>←</span>
-<span class=button__text>Trying To Run DOOM With The Raspberry Pi 4 Vulkan Driver</span></a></span>
-<span class="button next"><a href=https://luigi.ltd/2018-11-23/software-defined-radar-cw-doppler-radar-with-limesdr/><span class=button__text>Software Defined Doppler Radar with LimeSDR Mini</span>
-<span class=button__icon>→</span></a></span></div></div></div></div><footer class=footer><div class=footer__inner><div class="copyright copyright--user"><span>© 2020 Luigi Cruz</span>
-<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span></div></div></footer><script src=https://luigi.ltd/assets/main.js></script><script src=https://luigi.ltd/assets/prism.js></script><script data-goatcounter=https://luigi.goatcounter.com/count async src=https://gc.zgo.at/count.js></script></div></body></html>
+</code></pre><p>This command creates a web dashboard to monitor the current satellites being received by your station in real-time. This panel shows a bunch of cool diagnostics for each satellite, like health status, elevation, signal-to-noise ratio, and ephemeris age. To start feeding the observation data to the central Galmon server you need to ask for a callsign and server address to <a href="https://twitter.com/GalileoSats">@GalileoSats</a> on Twitter. By doing this, your station will be shown in the <a href="https://galmon.eu/geo/">Earth Map</a> with an estimated position.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<img 
+  sizes="(min-width: 35em) 1200px, 100vw"
+  srcset='
+  
+    /2019-09-20/using-limenet-internal-gnss-constellation-monitor/images/galmon-dashboard_huc16878b57ba1eb33fe7413202d99525f_296091_cb9a3d15c2e24e68320ee282245e7e09.jpg 500w
+  
+  
+    , /2019-09-20/using-limenet-internal-gnss-constellation-monitor/images/galmon-dashboard_huc16878b57ba1eb33fe7413202d99525f_296091_382e2dada9d7e60a9b0053d5a6e3d9fe.jpg 800w
+  
+  
+    , /2019-09-20/using-limenet-internal-gnss-constellation-monitor/images/galmon-dashboard_huc16878b57ba1eb33fe7413202d99525f_296091_9c0a4ca048d2d16190288353a944fa6a.jpg 1200w
+  
+  
+  , /2019-09-20/using-limenet-internal-gnss-constellation-monitor/images/galmon-dashboard_huc16878b57ba1eb33fe7413202d99525f_296091_1311x0_resize_q95_bgffffff_linear_3.jpg 1311w '
+  src="/2019-09-20/using-limenet-internal-gnss-constellation-monitor/images/galmon-dashboard_huc16878b57ba1eb33fe7413202d99525f_296091_1311x0_resize_q95_bgffffff_linear_3.jpg"
+  alt="">
+<p><strong>Disclaimer:</strong> The article made possible by the LimeNET Micro sample sent for me free of charge by Lime Microsystems. No compensation was requested or provided. Opinions are completely mine and no copy approval was given. You are seeing this post at the same time as they are.</p>
+<br>
+<div class="index-content framed">
+    <h1 id="hello-there-im-luigi">Hello there, I&rsquo;m Luigi!<a href="#hello-there-im-luigi" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>I&rsquo;m a Computer Engineering Student and Radio Amateur (PU2SPY). Here you can find information <a href="/about">about me</a> and my <a href="/projects">projects</a>. I talk about SDRs, Raspberry Pi, Machine Learning, Parallel Computing, Satellites, Python, C++, and Golang.</p>
+<p><a href="https://twitter.com/luigifcruz">Twitter</a> | <a href="https://github.com/luigifcruz">Github</a> | <a href="https://www.linkedin.com/in/luigifc/">LinkedIn</a></p>
+<p><em>Thanks for visiting!</em></p>
+
+</div>
+
+      </div></div>
+
+  
+  
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        <span class="button previous">
+            <a href="https://luigi.ltd/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Trying To Run DOOM With The Raspberry Pi 4 Vulkan Driver</span>
+            </a>
+        </span>
+        
+        
+        <span class="button next">
+            <a href="https://luigi.ltd/2018-11-23/software-defined-radar-cw-doppler-radar-with-limesdr/">
+                <span class="button__text">Software Defined Doppler Radar with LimeSDR Mini</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+  
+
+  
+
+</div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright copyright--user">
+        <span>© 2020 Luigi Cruz</span>
+    
+        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+<script src="https://luigi.ltd/assets/main.js"></script>
+<script src="https://luigi.ltd/assets/prism.js"></script>
+
+
+
+
+<script data-goatcounter="https://luigi.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+
+
+
+  
+</div>
+
+</body>
+</html>
