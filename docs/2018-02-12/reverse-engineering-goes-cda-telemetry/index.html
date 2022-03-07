@@ -1,471 +1,130 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html><html lang=en>
 <head>
-  
-    <title>Reverse Engineering GOES-16 CDA Telemetry :: Luigi Cruz - PU2SPY</title>
-  
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="In this post, I’ll detail how I managed to reverse engineer the telemetry signal from GOES-16 — NOAA’s third generation geosynchronous weather satellite built by Lockheed Martin and launched into space by ULA’s Altas V rocket.
-GOES-16 Telemetry Being Demodulated and Decoded.  This satellite is mostly known by the HRIT signal, responsible to distribute high-resolution meteorological data to hundreds of institutions throughout the portion of the earth illuminated by the spacecraft." />
-<meta name="keywords" content="SDRs, Raspberry Pi, Machine Learning, Parallel Computing, Satellites, Python, C&#43;&#43;, Golang" />
-<meta name="robots" content="noodp" />
-<link rel="canonical" href="https://luigi.ltd/2018-02-12/reverse-engineering-goes-cda-telemetry/" />
-
-
-
-
-<link rel="stylesheet" href="https://luigi.ltd/assets/style.css">
-
-  <link rel="stylesheet" href="https://luigi.ltd/assets/green.css">
-
-
-
-
-
-
-<link rel="apple-touch-icon" href="https://luigi.ltd/img/apple-touch-icon-192x192.png">
-
-  <link rel="shortcut icon" href="https://luigi.ltd/favicon.ico">
-
-
-
-<meta name="twitter:card" content="summary" />
-
-  
-    <meta name="twitter:site" content="https://twitter.com/luigifcruz" />
-  
-    <meta name="twitter:creator" content="luigifcruz" />
-
-
-
-<meta property="og:locale" content="en" />
-<meta property="og:type" content="article" />
+<title>Reverse Engineering GOES-16 CDA Telemetry :: Luigi Cruz - PU2SPY</title><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="In this post, I’ll detail how I managed to reverse engineer the telemetry signal from GOES-16 — NOAA’s third generation geosynchronous weather satellite built by Lockheed Martin and launched into space by ULA’s Altas V rocket.
+GOES-16 Telemetry Being Demodulated and Decoded.  This satellite is mostly known by the HRIT signal, responsible to distribute high-resolution meteorological data to hundreds of institutions throughout the portion of the earth illuminated by the spacecraft.">
+<meta name=keywords content="SDRs,Raspberry Pi,Machine Learning,Parallel Computing,Satellites,Python,C++,Golang">
+<meta name=robots content="noodp">
+<link rel=canonical href=https://luigi.ltd/2018-02-12/reverse-engineering-goes-cda-telemetry/>
+<link rel=stylesheet href=https://luigi.ltd/assets/style.css>
+<link rel=stylesheet href=https://luigi.ltd/assets/green.css>
+<link rel=apple-touch-icon href=https://luigi.ltd/img/apple-touch-icon-192x192.png>
+<link rel="shortcut icon" href=https://luigi.ltd/favicon.ico>
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="https://twitter.com/luigifcruz">
+<meta name=twitter:creator content="luigifcruz">
+<meta property="og:locale" content="en">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Reverse Engineering GOES-16 CDA Telemetry">
 <meta property="og:description" content="In this post, I’ll detail how I managed to reverse engineer the telemetry signal from GOES-16 — NOAA’s third generation geosynchronous weather satellite built by Lockheed Martin and launched into space by ULA’s Altas V rocket.
-GOES-16 Telemetry Being Demodulated and Decoded.  This satellite is mostly known by the HRIT signal, responsible to distribute high-resolution meteorological data to hundreds of institutions throughout the portion of the earth illuminated by the spacecraft." />
-<meta property="og:url" content="https://luigi.ltd/2018-02-12/reverse-engineering-goes-cda-telemetry/" />
-<meta property="og:site_name" content="Luigi Cruz - PU2SPY" />
-
-  
-    <meta property="og:image" content="https://luigi.ltd/favicon.ico">
-  
-
+GOES-16 Telemetry Being Demodulated and Decoded.  This satellite is mostly known by the HRIT signal, responsible to distribute high-resolution meteorological data to hundreds of institutions throughout the portion of the earth illuminated by the spacecraft.">
+<meta property="og:url" content="https://luigi.ltd/2018-02-12/reverse-engineering-goes-cda-telemetry/">
+<meta property="og:site_name" content="Luigi Cruz - PU2SPY">
+<meta property="og:image" content="https://luigi.ltd/favicon.ico">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
-
-
-  <meta property="article:published_time" content="2018-02-12 00:00:00 &#43;0000 UTC" />
-
-
-
-
-
-
-
-
-
-
-
-
-</head>
-<body class="green">
-
-
+<meta property="article:published_time" content="2018-02-12 00:00:00 +0000 UTC">
+</head><body class=green>
 <div class="container center headings--one-size">
-
-  <header class="header">
-  <div class="header__inner">
-    <div class="header__logo">
-      <a href="/">
-  <div class="logo">
-    Luigi Cruz
-  </div>
-</a>
-
-    </div>
-    
-      <div class="menu-trigger">menu</div>
-    
-  </div>
-  
-    <nav class="menu">
-  <ul class="menu__inner menu__inner--desktop">
-    
-      
-        
-          <li><a href="/about">About</a></li>
-        
-      
-        
-          <li><a href="/projects">Projects</a></li>
-        
-      
-        
-          <li><a href="/contact">Contact</a></li>
-        
-      
-        
-          <li><a href="https://twitter.com/luigifcruz">Twitter</a></li>
-        
-      
-        
-          <li><a href="https://github.com/luigifcruz">Github</a></li>
-        
-      
-        
-          <li><a href="https://www.linkedin.com/in/luigifc/">LinkedIn</a></li>
-        
-      
-      
-    
-
-    
-  </ul>
-
-  <ul class="menu__inner menu__inner--mobile">
-    
-      
-        <li><a href="/about">About</a></li>
-      
-    
-      
-        <li><a href="/projects">Projects</a></li>
-      
-    
-      
-        <li><a href="/contact">Contact</a></li>
-      
-    
-      
-        <li><a href="https://twitter.com/luigifcruz">Twitter</a></li>
-      
-    
-      
-        <li><a href="https://github.com/luigifcruz">Github</a></li>
-      
-    
-      
-        <li><a href="https://www.linkedin.com/in/luigifc/">LinkedIn</a></li>
-      
-    
-    
-  </ul>
-</nav>
-
-  
-</header>
-
-
-  <div class="content">
-    
-<div class="post">
-  <h1 class="post-title">
-    <a href="https://luigi.ltd/2018-02-12/reverse-engineering-goes-cda-telemetry/">Reverse Engineering GOES-16 CDA Telemetry</a></h1>
-  <div class="post-meta">
-    
-      <span class="post-date">
-        2018-02-12 
-      </span>
-    
-    
-    <span class="post-author">:: Luigi Cruz</span>
-    
-  </div>
-
-  
-  <span class="post-tags">
-    
-    #<a href="https://luigi.ltd/tags/satellite/">Satellite</a>&nbsp;
-    
-    #<a href="https://luigi.ltd/tags/sdr/">SDR</a>&nbsp;
-    
-    #<a href="https://luigi.ltd/tags/gnuradio/">GNURadio</a>&nbsp;
-    
-  </span>
-  
-
-  
-
-  
-
-  <div class="post-content"><div>
-        <p>In this post, I’ll detail how I managed to reverse engineer the telemetry signal from GOES-16 — NOAA’s third generation geosynchronous weather satellite built by Lockheed Martin and launched into space by ULA’s Altas V rocket.</p>
-<figure class="left">
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<img 
-  sizes="(min-width: 35em) 1200px, 100vw"
-  srcset='
-  
-    /2018-02-12/reverse-engineering-goes-cda-telemetry/images/demodulation-goes-telemetry_hu1007e3a773ba27bf49a12f5451546f2f_616162_1b0f97ca7d9716181e7d14115539cd97.jpg 500w
-  
-  
-    , /2018-02-12/reverse-engineering-goes-cda-telemetry/images/demodulation-goes-telemetry_hu1007e3a773ba27bf49a12f5451546f2f_616162_e290965ce30e3be7b409160500592ac5.jpg 800w
-  
-  
-    , /2018-02-12/reverse-engineering-goes-cda-telemetry/images/demodulation-goes-telemetry_hu1007e3a773ba27bf49a12f5451546f2f_616162_e8f7c22763b4461e9618120761b4ec09.jpg 1200w
-  
-  
-    , /2018-02-12/reverse-engineering-goes-cda-telemetry/images/demodulation-goes-telemetry_hu1007e3a773ba27bf49a12f5451546f2f_616162_176a9c50f5735df17a0408bc5fff731a.jpg 1500w 
-  
-  , /2018-02-12/reverse-engineering-goes-cda-telemetry/images/demodulation-goes-telemetry_hu1007e3a773ba27bf49a12f5451546f2f_616162_1746x0_resize_q95_bgffffff_linear_3.jpg 1746w '
-  src="/2018-02-12/reverse-engineering-goes-cda-telemetry/images/demodulation-goes-telemetry_hu1007e3a773ba27bf49a12f5451546f2f_616162_1746x0_resize_q95_bgffffff_linear_3.jpg"
-  alt="GOES-16 Telemetry Being Demodulated and Decoded.">
-    <figcaption class="center">GOES-16 Telemetry Being Demodulated and Decoded.</figcaption>
-</figure>
-<p>This satellite is mostly known by the HRIT signal, responsible to distribute high-resolution meteorological data to hundreds of institutions throughout the portion of the earth illuminated by the spacecraft. Including the famous full-disk images with the resolution of 250 meters per pixel. Besides the HRIT and telemetry, it also transmits other signals (e.g. DCPR and GRB) which will be discussed in the future.</p>
-<p>This project was made with Open Source Software. For the decoding part of I’ll be using Open Satellite Project software developed originally for the LRIT Signal and for the demodulation part GNU Radio Companion. The decoder and demodulator are available on <a href="https://github.com/opensatelliteproject/tlmdemod">GitHub</a>.</p>
-<h2 id="feasibility">Feasibility<a href="#feasibility" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
-<p>The telemetry signal from previous GOES generations is known for not being encoded. This means that a very high SNR is needed to successfully decode the CCSDS Transfer Frames into the final data. Luckily this generation uses two types of coding that lowers the SNR needed to an amateur level.</p>
-<p>The telemetry modulation of this generation has also changed. Now the signal is modulated with BPSK instead of QPSK. This is a good thing because we can reuse the demodulator software from HRIT. The frequency also changed to 1693.0 MHz which is very close to the HRIT signal. In fact, you can capture both of them at the same time using an RTL-SDR.</p>
-<h2 id="receiving--demodulating">Receiving &amp; Demodulating<a href="#receiving--demodulating" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
-<p>The first step is to receive and filter the actual signal from the noise floor. Here I’m using a 2.5 MHz baseband recoding provided by Lucas Teske that can be downloaded from his <a href="http://www.teske.net.br/lucas/basebands/">website</a>. You can easily record the signal with the same hardware used for the HRIT signal. In the screenshot below, you can see the entire baseband recoding in blue and the actual signal filtered by a Root Raised Cosine Filter Block in red.</p>
-<figure class="left">
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<img 
-  sizes="(min-width: 35em) 1200px, 100vw"
-  srcset='
-  
-    /2018-02-12/reverse-engineering-goes-cda-telemetry/images/rrc-filter-goes-telemetry_hufbc34689bc179aafccd06ec05ef650d3_50044_4cc9adcc7f6f82887a4d7c76ad6cf0cd.jpg 500w
-  
-  
-    , /2018-02-12/reverse-engineering-goes-cda-telemetry/images/rrc-filter-goes-telemetry_hufbc34689bc179aafccd06ec05ef650d3_50044_360cdfb4f4b9b2bda02b8d847035f0ef.jpg 800w
-  
-  
-  
-  , /2018-02-12/reverse-engineering-goes-cda-telemetry/images/rrc-filter-goes-telemetry_hufbc34689bc179aafccd06ec05ef650d3_50044_1072x0_resize_q95_bgffffff_linear_3.jpg 1072w '
-  src="/2018-02-12/reverse-engineering-goes-cda-telemetry/images/rrc-filter-goes-telemetry_hufbc34689bc179aafccd06ec05ef650d3_50044_1072x0_resize_q95_bgffffff_linear_3.jpg"
-  alt="FIR Filter Visualization at GNURadio Companion.">
-    <figcaption class="center">FIR Filter Visualization at GNURadio Companion.</figcaption>
-</figure>
-<p>It can be easily identified as PSK modulated just by looking at the FFT. This type of modulation is widely used by L-Band spacecraft. Phase Modulation is also very common (e.g. HRPT) but they have a characteristic central carrier. I used the Cyclostationary Analysis technique to discover the signal symbol rate. With this technique, you multiply the signal with the delayed version of itself. The symbol rate will magically pop-out in the resultant graph. In this case, the symbol rate is 40 kilo-symbols per second.</p>
-<figure class="left">
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<img 
-  sizes="(min-width: 35em) 1200px, 100vw"
-  srcset='
-  
-    /2018-02-12/reverse-engineering-goes-cda-telemetry/images/bitrate-goes-telemetry_hua991f957f1df2f139c552499fe5d898b_38319_eb7c3da882a0556e58bb14650cb9ff03.jpg 500w
-  
-  
-    , /2018-02-12/reverse-engineering-goes-cda-telemetry/images/bitrate-goes-telemetry_hua991f957f1df2f139c552499fe5d898b_38319_d78cc1e125dd3a7bd033d2d5e3a30f45.jpg 800w
-  
-  
-  
-  , /2018-02-12/reverse-engineering-goes-cda-telemetry/images/bitrate-goes-telemetry_hua991f957f1df2f139c552499fe5d898b_38319_1055x0_resize_q95_bgffffff_linear_3.jpg 1055w '
-  src="/2018-02-12/reverse-engineering-goes-cda-telemetry/images/bitrate-goes-telemetry_hua991f957f1df2f139c552499fe5d898b_38319_1055x0_resize_q95_bgffffff_linear_3.jpg"
-  alt="Cyclostationary Analysis Resultant Bitrate.">
-    <figcaption class="center">Cyclostationary Analysis Resultant Bitrate.</figcaption>
-</figure>
-<p>The last step of the demodulation part is to apply the specifications we got into the standard BPSK demodulator and send the binary stream to the Decoder via the standard TCP Sink. The GNURadio Companion file used to reverse engineer the signal can be downloaded here. And the production companion file can be found on the Project’s GitHub Repository. This will be ported to the stock Open Satellite Project demodulator in the near future.</p>
-<h2 id="decoding">Decoding<a href="#decoding" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
-<p>I couldn’t find any detailed documentation of this signal anywhere on the internet. The only specification I found was the final bitrate of 32 kbps. By subtracting that from the total signal baud rate we get 8 kbps. This is the bandwidth used by the coding, suggesting that no Convolutional Encoding is being used, as they are known by using a lot of bandwidth. When received, no apparent structure is visible, suggesting that the data is coded.</p>
-<p>After some experimentation with the decoder, I saw the standard CCSDS framing structure. Turns out that the data is encoded with the same Differential Coding used by the HRIT signal. More specifically the Non-Return-to-Zero Mark (NRZM). The Open Satellite Project differential decoder expects hard bits coming from the Viterbi decoder. Therefore, a casting from soft to hard symbols is needed between the TCP Source and the decoder. This is fine because the soft symbols are just useful to the Convolutional Decoder find the most probable path in the Markov Sequence.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">// Convert soft to hard bits. 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> FRAMEBITS; i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">8</span>) {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint8_t</span> byte <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x00</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> i; j <span style="color:#f92672">&lt;</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">&amp;&amp;</span> j <span style="color:#f92672">&lt;</span> FRAMEBITS; j<span style="color:#f92672">++</span>)
-</span></span><span style="display:flex;"><span>    byte <span style="color:#f92672">=</span> (byte <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">|</span> ((codedData[j] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">128</span>) <span style="color:#f92672">?</span> <span style="color:#ae81ff">0x00</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">0x01</span>);
-</span></span><span style="display:flex;"><span>  decodedData[i<span style="color:#f92672">/</span><span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> byte;
-</span></span><span style="display:flex;"><span>}      
-</span></span></code></pre></div><p>After decoding, the three structures from the CCSDS Transfer Frame are visible in the bit-viewer. A 32 bits sync word, the payload data, and one Reed-Solomon block. The CCSDS Standard states that one RS Block is needed after 223 bits. Therefore, the frame size is 256 bits instead of 1024 bits from the HRIT frame with four RS Blocks.</p>
-<figure class="left">
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<img 
-  sizes="(min-width: 35em) 1200px, 100vw"
-  srcset='
-  
-    /2018-02-12/reverse-engineering-goes-cda-telemetry/images/unsync-bitview-goes-telemetry_hu4cf3ce9d6d5cfd6c71e42f18a6b1bbf2_197609_b3274993b560a4e26f819542c77e0b58.jpg 500w
-  
-  
-    , /2018-02-12/reverse-engineering-goes-cda-telemetry/images/unsync-bitview-goes-telemetry_hu4cf3ce9d6d5cfd6c71e42f18a6b1bbf2_197609_21d5e8f29a7129ab5c9ffded6ccd2392.jpg 800w
-  
-  
-    , /2018-02-12/reverse-engineering-goes-cda-telemetry/images/unsync-bitview-goes-telemetry_hu4cf3ce9d6d5cfd6c71e42f18a6b1bbf2_197609_cd9d74653c5b57251687b705bdaa4439.jpg 1200w
-  
-  
-    , /2018-02-12/reverse-engineering-goes-cda-telemetry/images/unsync-bitview-goes-telemetry_hu4cf3ce9d6d5cfd6c71e42f18a6b1bbf2_197609_49e7cd102596260e27db043712bac9d4.jpg 1500w 
-  
-  , /2018-02-12/reverse-engineering-goes-cda-telemetry/images/unsync-bitview-goes-telemetry_hu4cf3ce9d6d5cfd6c71e42f18a6b1bbf2_197609_1620x0_resize_q95_bgffffff_linear_3.jpg 1620w '
-  src="/2018-02-12/reverse-engineering-goes-cda-telemetry/images/unsync-bitview-goes-telemetry_hu4cf3ce9d6d5cfd6c71e42f18a6b1bbf2_197609_1620x0_resize_q95_bgffffff_linear_3.jpg"
-  alt="Bitview of Unsynchronized CCSDS Frames.">
-    <figcaption class="center">Bitview of Unsynchronized CCSDS Frames.</figcaption>
-</figure>
-<p>You can notice that the sync word isn’t at the beginning of the frame. This has to be corrected by measuring the correlation of the encoded word with every frame and perform the synchronization. For that, we will use the same correlation algorithm from the HRIT software with some modifications. The number of encoded words still two, accounting for the NRZM bit-swap. But the word length changed from 64 bit to 32 bit, since there is no 1/2 Convolutional Encoding. The Python code used to encode each word with NRZM are shown below. This code was made by Lucas Teske for the GOES-16 HRIT Patch.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Hex Word: 0x1ACFFC1D</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Binary Word: 0b00011010110011111111110000011101</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># NRZ-M Word (Normal): 0b00010011011101010101011111101001</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># NRZ-M Word (Bitflip): 0b11101100100010101010100000010110</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># NRZ-M Normal Hex: 0x137557E9</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># NRZ-M Bitflip Hex: 0xEC8AA816</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>bword <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;00011010110011111111110000011101&#34;</span>
-</span></span><span style="display:flex;"><span>lastbit <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1&#34;</span>
-</span></span><span style="display:flex;"><span>encodedbword <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> bword:
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> lastbit <span style="color:#f92672">!=</span> i:
-</span></span><span style="display:flex;"><span>    encodedbword <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;1&#34;</span>
-</span></span><span style="display:flex;"><span>    lastbit <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">else</span>:
-</span></span><span style="display:flex;"><span>    encodedbword <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;0&#34;</span>
-</span></span><span style="display:flex;"><span>    lastbit <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;0&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>print(encodedbword);
-</span></span></code></pre></div><p>The frame is now synchronized and can be de-randomized by the same polynomials used by the HRIT. They are specified by the CCSDS standard. To save CPU the sync word is deleted from the rest of the frame. Now we run the Reed-Solomon algorithm to identify and correct any error with the frame. Finally, the data is corrected and ready for the demuxing part that will process the CCSDS Transfer Frame into the final data.</p>
-
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/-6iLRd4mng0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
-
-<h2 id="next-up-demuxing">Next up: Demuxing<a href="#next-up-demuxing" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
-<p>The demuxing part isn’t completely figured out yet. Lack of public documentation regarding the inner layer of the data field forces us to reverse engineer it from scratch. This isn’t a trivial situation because the telemetry data isn’t predictable. I will talk about it in the next post. Follow me on Twitter <a href="https://twitter.com/luigifcruz">@luigifcruz</a> to get the latest updates. The decoder and demodulator are available on <a href="https://github.com/opensatelliteproject/tlmdemod">GitHub</a>. Big thanks to <a href="https://twitter.com/usa_satcom?lang=en">@usa_satcom</a> and <a href="https://twitter.com/lucasteske?lang=en">@lucasteske</a> for the support.</p>
-<br>
+<header class=header>
+<div class=header__inner>
+<div class=header__logo>
+<a href=/>
+<div class=logo>
+Luigi Cruz
+</div></a>
+</div><div class=menu-trigger>menu</div></div><nav class=menu>
+<ul class="menu__inner menu__inner--desktop">
+<li><a href=/about>About</a></li><li><a href=/projects>Projects</a></li><li><a href=/contact>Contact</a></li><li><a href=https://twitter.com/luigifcruz>Twitter</a></li><li><a href=https://github.com/luigifcruz>Github</a></li><li><a href=https://www.linkedin.com/in/luigifc/>LinkedIn</a></li></ul><ul class="menu__inner menu__inner--mobile">
+<li><a href=/about>About</a></li><li><a href=/projects>Projects</a></li><li><a href=/contact>Contact</a></li><li><a href=https://twitter.com/luigifcruz>Twitter</a></li><li><a href=https://github.com/luigifcruz>Github</a></li><li><a href=https://www.linkedin.com/in/luigifc/>LinkedIn</a></li></ul></nav></header><div class=content>
+<div class=post>
+<h1 class=post-title>
+<a href=https://luigi.ltd/2018-02-12/reverse-engineering-goes-cda-telemetry/>Reverse Engineering GOES-16 CDA Telemetry</a></h1><div class=post-meta>
+<span class=post-date>
+2018-02-12
+</span>
+<span class=post-author>:: Luigi Cruz</span>
+</div><span class=post-tags>
+#<a href=https://luigi.ltd/tags/satellite/>Satellite</a>&nbsp;
+#<a href=https://luigi.ltd/tags/sdr/>SDR</a>&nbsp;
+#<a href=https://luigi.ltd/tags/gnuradio/>GNURadio</a>&nbsp;
+</span>
+<div class=post-content><div>
+<p>In this post, I’ll detail how I managed to reverse engineer the telemetry signal from GOES-16 — NOAA’s third generation geosynchronous weather satellite built by Lockheed Martin and launched into space by ULA’s Altas V rocket.</p><figure class=left>
+<img sizes="(min-width: 35em) 1200px, 100vw" srcset="/2018-02-12/reverse-engineering-goes-cda-telemetry/images/demodulation-goes-telemetry_hu1007e3a773ba27bf49a12f5451546f2f_616162_1b0f97ca7d9716181e7d14115539cd97.jpg 500w
+, /2018-02-12/reverse-engineering-goes-cda-telemetry/images/demodulation-goes-telemetry_hu1007e3a773ba27bf49a12f5451546f2f_616162_e290965ce30e3be7b409160500592ac5.jpg 800w
+, /2018-02-12/reverse-engineering-goes-cda-telemetry/images/demodulation-goes-telemetry_hu1007e3a773ba27bf49a12f5451546f2f_616162_e8f7c22763b4461e9618120761b4ec09.jpg 1200w
+, /2018-02-12/reverse-engineering-goes-cda-telemetry/images/demodulation-goes-telemetry_hu1007e3a773ba27bf49a12f5451546f2f_616162_176a9c50f5735df17a0408bc5fff731a.jpg 1500w
+, /2018-02-12/reverse-engineering-goes-cda-telemetry/images/demodulation-goes-telemetry_hu1007e3a773ba27bf49a12f5451546f2f_616162_1746x0_resize_q95_bgffffff_linear_3.jpg 1746w" src=/2018-02-12/reverse-engineering-goes-cda-telemetry/images/demodulation-goes-telemetry_hu1007e3a773ba27bf49a12f5451546f2f_616162_1746x0_resize_q95_bgffffff_linear_3.jpg alt="GOES-16 Telemetry Being Demodulated and Decoded.">
+<figcaption class=center>GOES-16 Telemetry Being Demodulated and Decoded.</figcaption></figure><p>This satellite is mostly known by the HRIT signal, responsible to distribute high-resolution meteorological data to hundreds of institutions throughout the portion of the earth illuminated by the spacecraft. Including the famous full-disk images with the resolution of 250 meters per pixel. Besides the HRIT and telemetry, it also transmits other signals (e.g. DCPR and GRB) which will be discussed in the future.</p><p>This project was made with Open Source Software. For the decoding part of I’ll be using Open Satellite Project software developed originally for the LRIT Signal and for the demodulation part GNU Radio Companion. The decoder and demodulator are available on <a href=https://github.com/opensatelliteproject/tlmdemod>GitHub</a>.</p><h2 id=feasibility>Feasibility<a href=#feasibility class=hanchor arialabel=Anchor>&#8983;</a> </h2><p>The telemetry signal from previous GOES generations is known for not being encoded. This means that a very high SNR is needed to successfully decode the CCSDS Transfer Frames into the final data. Luckily this generation uses two types of coding that lowers the SNR needed to an amateur level.</p><p>The telemetry modulation of this generation has also changed. Now the signal is modulated with BPSK instead of QPSK. This is a good thing because we can reuse the demodulator software from HRIT. The frequency also changed to 1693.0 MHz which is very close to the HRIT signal. In fact, you can capture both of them at the same time using an RTL-SDR.</p><h2 id=receiving--demodulating>Receiving & Demodulating<a href=#receiving--demodulating class=hanchor arialabel=Anchor>&#8983;</a> </h2><p>The first step is to receive and filter the actual signal from the noise floor. Here I’m using a 2.5 MHz baseband recoding provided by Lucas Teske that can be downloaded from his <a href=http://www.teske.net.br/lucas/basebands/>website</a>. You can easily record the signal with the same hardware used for the HRIT signal. In the screenshot below, you can see the entire baseband recoding in blue and the actual signal filtered by a Root Raised Cosine Filter Block in red.</p><figure class=left>
+<img sizes="(min-width: 35em) 1200px, 100vw" srcset="/2018-02-12/reverse-engineering-goes-cda-telemetry/images/rrc-filter-goes-telemetry_hufbc34689bc179aafccd06ec05ef650d3_50044_4cc9adcc7f6f82887a4d7c76ad6cf0cd.jpg 500w
+, /2018-02-12/reverse-engineering-goes-cda-telemetry/images/rrc-filter-goes-telemetry_hufbc34689bc179aafccd06ec05ef650d3_50044_360cdfb4f4b9b2bda02b8d847035f0ef.jpg 800w
+, /2018-02-12/reverse-engineering-goes-cda-telemetry/images/rrc-filter-goes-telemetry_hufbc34689bc179aafccd06ec05ef650d3_50044_1072x0_resize_q95_bgffffff_linear_3.jpg 1072w" src=/2018-02-12/reverse-engineering-goes-cda-telemetry/images/rrc-filter-goes-telemetry_hufbc34689bc179aafccd06ec05ef650d3_50044_1072x0_resize_q95_bgffffff_linear_3.jpg alt="FIR Filter Visualization at GNURadio Companion.">
+<figcaption class=center>FIR Filter Visualization at GNURadio Companion.</figcaption></figure><p>It can be easily identified as PSK modulated just by looking at the FFT. This type of modulation is widely used by L-Band spacecraft. Phase Modulation is also very common (e.g. HRPT) but they have a characteristic central carrier. I used the Cyclostationary Analysis technique to discover the signal symbol rate. With this technique, you multiply the signal with the delayed version of itself. The symbol rate will magically pop-out in the resultant graph. In this case, the symbol rate is 40 kilo-symbols per second.</p><figure class=left>
+<img sizes="(min-width: 35em) 1200px, 100vw" srcset="/2018-02-12/reverse-engineering-goes-cda-telemetry/images/bitrate-goes-telemetry_hua991f957f1df2f139c552499fe5d898b_38319_eb7c3da882a0556e58bb14650cb9ff03.jpg 500w
+, /2018-02-12/reverse-engineering-goes-cda-telemetry/images/bitrate-goes-telemetry_hua991f957f1df2f139c552499fe5d898b_38319_d78cc1e125dd3a7bd033d2d5e3a30f45.jpg 800w
+, /2018-02-12/reverse-engineering-goes-cda-telemetry/images/bitrate-goes-telemetry_hua991f957f1df2f139c552499fe5d898b_38319_1055x0_resize_q95_bgffffff_linear_3.jpg 1055w" src=/2018-02-12/reverse-engineering-goes-cda-telemetry/images/bitrate-goes-telemetry_hua991f957f1df2f139c552499fe5d898b_38319_1055x0_resize_q95_bgffffff_linear_3.jpg alt="Cyclostationary Analysis Resultant Bitrate.">
+<figcaption class=center>Cyclostationary Analysis Resultant Bitrate.</figcaption></figure><p>The last step of the demodulation part is to apply the specifications we got into the standard BPSK demodulator and send the binary stream to the Decoder via the standard TCP Sink. The GNURadio Companion file used to reverse engineer the signal can be downloaded here. And the production companion file can be found on the Project’s GitHub Repository. This will be ported to the stock Open Satellite Project demodulator in the near future.</p><h2 id=decoding>Decoding<a href=#decoding class=hanchor arialabel=Anchor>&#8983;</a> </h2><p>I couldn’t find any detailed documentation of this signal anywhere on the internet. The only specification I found was the final bitrate of 32 kbps. By subtracting that from the total signal baud rate we get 8 kbps. This is the bandwidth used by the coding, suggesting that no Convolutional Encoding is being used, as they are known by using a lot of bandwidth. When received, no apparent structure is visible, suggesting that the data is coded.</p><p>After some experimentation with the decoder, I saw the standard CCSDS framing structure. Turns out that the data is encoded with the same Differential Coding used by the HRIT signal. More specifically the Non-Return-to-Zero Mark (NRZM). The Open Satellite Project differential decoder expects hard bits coming from the Viterbi decoder. Therefore, a casting from soft to hard symbols is needed between the TCP Source and the decoder. This is fine because the soft symbols are just useful to the Convolutional Decoder find the most probable path in the Markov Sequence.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#75715e>// Convert soft to hard bits. 
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> FRAMEBITS; i <span style=color:#f92672>+=</span> <span style=color:#ae81ff>8</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>uint8_t</span> byte <span style=color:#f92672>=</span> <span style=color:#ae81ff>0x00</span>;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> i; j <span style=color:#f92672>&lt;</span> i <span style=color:#f92672>+</span> <span style=color:#ae81ff>8</span> <span style=color:#f92672>&amp;&amp;</span> j <span style=color:#f92672>&lt;</span> FRAMEBITS; j<span style=color:#f92672>++</span>)
+</span></span><span style=display:flex><span>    byte <span style=color:#f92672>=</span> (byte <span style=color:#f92672>&lt;&lt;</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>|</span> ((codedData[j] <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>128</span>) <span style=color:#f92672>?</span> <span style=color:#ae81ff>0x00</span> <span style=color:#f92672>:</span> <span style=color:#ae81ff>0x01</span>);
+</span></span><span style=display:flex><span>  decodedData[i<span style=color:#f92672>/</span><span style=color:#ae81ff>8</span>] <span style=color:#f92672>=</span> byte;
+</span></span><span style=display:flex><span>}      
+</span></span></code></pre></div><p>After decoding, the three structures from the CCSDS Transfer Frame are visible in the bit-viewer. A 32 bits sync word, the payload data, and one Reed-Solomon block. The CCSDS Standard states that one RS Block is needed after 223 bits. Therefore, the frame size is 256 bits instead of 1024 bits from the HRIT frame with four RS Blocks.</p><figure class=left>
+<img sizes="(min-width: 35em) 1200px, 100vw" srcset="/2018-02-12/reverse-engineering-goes-cda-telemetry/images/unsync-bitview-goes-telemetry_hu4cf3ce9d6d5cfd6c71e42f18a6b1bbf2_197609_b3274993b560a4e26f819542c77e0b58.jpg 500w
+, /2018-02-12/reverse-engineering-goes-cda-telemetry/images/unsync-bitview-goes-telemetry_hu4cf3ce9d6d5cfd6c71e42f18a6b1bbf2_197609_21d5e8f29a7129ab5c9ffded6ccd2392.jpg 800w
+, /2018-02-12/reverse-engineering-goes-cda-telemetry/images/unsync-bitview-goes-telemetry_hu4cf3ce9d6d5cfd6c71e42f18a6b1bbf2_197609_cd9d74653c5b57251687b705bdaa4439.jpg 1200w
+, /2018-02-12/reverse-engineering-goes-cda-telemetry/images/unsync-bitview-goes-telemetry_hu4cf3ce9d6d5cfd6c71e42f18a6b1bbf2_197609_49e7cd102596260e27db043712bac9d4.jpg 1500w
+, /2018-02-12/reverse-engineering-goes-cda-telemetry/images/unsync-bitview-goes-telemetry_hu4cf3ce9d6d5cfd6c71e42f18a6b1bbf2_197609_1620x0_resize_q95_bgffffff_linear_3.jpg 1620w" src=/2018-02-12/reverse-engineering-goes-cda-telemetry/images/unsync-bitview-goes-telemetry_hu4cf3ce9d6d5cfd6c71e42f18a6b1bbf2_197609_1620x0_resize_q95_bgffffff_linear_3.jpg alt="Bitview of Unsynchronized CCSDS Frames.">
+<figcaption class=center>Bitview of Unsynchronized CCSDS Frames.</figcaption></figure><p>You can notice that the sync word isn’t at the beginning of the frame. This has to be corrected by measuring the correlation of the encoded word with every frame and perform the synchronization. For that, we will use the same correlation algorithm from the HRIT software with some modifications. The number of encoded words still two, accounting for the NRZM bit-swap. But the word length changed from 64 bit to 32 bit, since there is no 1/2 Convolutional Encoding. The Python code used to encode each word with NRZM are shown below. This code was made by Lucas Teske for the GOES-16 HRIT Patch.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Hex Word: 0x1ACFFC1D</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Binary Word: 0b00011010110011111111110000011101</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># NRZ-M Word (Normal): 0b00010011011101010101011111101001</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># NRZ-M Word (Bitflip): 0b11101100100010101010100000010110</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># NRZ-M Normal Hex: 0x137557E9</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># NRZ-M Bitflip Hex: 0xEC8AA816</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>bword <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;00011010110011111111110000011101&#34;</span>
+</span></span><span style=display:flex><span>lastbit <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;1&#34;</span>
+</span></span><span style=display:flex><span>encodedbword <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span>;
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> bword:
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> lastbit <span style=color:#f92672>!=</span> i:
+</span></span><span style=display:flex><span>    encodedbword <span style=color:#f92672>+=</span> <span style=color:#e6db74>&#34;1&#34;</span>
+</span></span><span style=display:flex><span>    lastbit <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;1&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>    encodedbword <span style=color:#f92672>+=</span> <span style=color:#e6db74>&#34;0&#34;</span>
+</span></span><span style=display:flex><span>    lastbit <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;0&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>print(encodedbword);
+</span></span></code></pre></div><p>The frame is now synchronized and can be de-randomized by the same polynomials used by the HRIT. They are specified by the CCSDS standard. To save CPU the sync word is deleted from the rest of the frame. Now we run the Reed-Solomon algorithm to identify and correct any error with the frame. Finally, the data is corrected and ready for the demuxing part that will process the CCSDS Transfer Frame into the final data.</p><div style=position:relative;padding-bottom:56.25%;height:0;overflow:hidden>
+<iframe src=https://www.youtube.com/embed/-6iLRd4mng0 style=position:absolute;top:0;left:0;width:100%;height:100%;border:0 allowfullscreen title="YouTube Video"></iframe>
+</div><h2 id=next-up-demuxing>Next up: Demuxing<a href=#next-up-demuxing class=hanchor arialabel=Anchor>&#8983;</a> </h2><p>The demuxing part isn’t completely figured out yet. Lack of public documentation regarding the inner layer of the data field forces us to reverse engineer it from scratch. This isn’t a trivial situation because the telemetry data isn’t predictable. I will talk about it in the next post. Follow me on Twitter <a href=https://twitter.com/luigifcruz>@luigifcruz</a> to get the latest updates. The decoder and demodulator are available on <a href=https://github.com/opensatelliteproject/tlmdemod>GitHub</a>. Big thanks to <a href="https://twitter.com/usa_satcom?lang=en">@usa_satcom</a> and <a href="https://twitter.com/lucasteske?lang=en">@lucasteske</a> for the support.</p><br>
 <div class="index-content framed">
-    <h1 id="hello-there-im-luigi">Hello there, I&rsquo;m Luigi!<a href="#hello-there-im-luigi" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
-<p>I&rsquo;m a Computer Engineering Student and Radio Amateur (PU2SPY). Here you can find information <a href="/about">about me</a> and my <a href="/projects">projects</a>. I talk about SDRs, Raspberry Pi, Machine Learning, Parallel Computing, Satellites, Python, C++, and Golang.</p>
-<p><a href="https://twitter.com/luigifcruz">Twitter</a> | <a href="https://github.com/luigifcruz">Github</a> | <a href="https://www.linkedin.com/in/luigifc/">LinkedIn</a></p>
-<p><em>Thanks for visiting!</em></p>
-
-</div>
-
-      </div></div>
-
-  
-  
-<div class="pagination">
-    <div class="pagination__title">
-        <span class="pagination__title-h">Read other posts</span>
-        <hr />
-    </div>
-    <div class="pagination__buttons">
-        
-        <span class="button previous">
-            <a href="https://luigi.ltd/2018-11-23/software-defined-radar-cw-doppler-radar-with-limesdr/">
-                <span class="button__icon">←</span>
-                <span class="button__text">Software Defined Doppler Radar with LimeSDR Mini</span>
-            </a>
-        </span>
-        
-        
-        <span class="button next">
-            <a href="https://luigi.ltd/2017-08-04/outernet-receiver-with-a-wifi-grid-antenna/">
-                <span class="button__text">Outernet Receiver with a Wifi Grid Antenna</span>
-                <span class="button__icon">→</span>
-            </a>
-        </span>
-        
-    </div>
-</div>
-
-  
-
-  
-
-</div>
-
-  </div>
-
-  
-    <footer class="footer">
-  <div class="footer__inner">
-    
-      <div class="copyright copyright--user">
-        <span>© 2020 Luigi Cruz</span>
-    
-        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
-      </div>
-  </div>
-</footer>
-
-<script src="https://luigi.ltd/assets/main.js"></script>
-<script src="https://luigi.ltd/assets/prism.js"></script>
-
-
-
-
-<script data-goatcounter="https://luigi.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-
-
-
-  
-</div>
-
-</body>
-</html>
+<h1 id=hello-there-im-luigi>Hello there, I&rsquo;m Luigi!<a href=#hello-there-im-luigi class=hanchor arialabel=Anchor>&#8983;</a> </h1><p>I&rsquo;m a Computer Engineering Student and Radio Amateur (PU2SPY). Here you can find information <a href=/about>about me</a> and my <a href=/projects>projects</a>. I talk about SDRs, Raspberry Pi, Machine Learning, Parallel Computing, Satellites, Python, C++, and Golang.</p><p><a href=https://twitter.com/luigifcruz>Twitter</a> | <a href=https://github.com/luigifcruz>Github</a> | <a href=https://www.linkedin.com/in/luigifc/>LinkedIn</a></p><p><em>Thanks for visiting!</em></p></div></div></div><div class=pagination>
+<div class=pagination__title>
+<span class=pagination__title-h>Read other posts</span>
+<hr>
+</div><div class=pagination__buttons>
+<span class="button previous">
+<a href=https://luigi.ltd/2018-11-23/software-defined-radar-cw-doppler-radar-with-limesdr/>
+<span class=button__icon>←</span>
+<span class=button__text>Software Defined Doppler Radar with LimeSDR Mini</span>
+</a>
+</span>
+<span class="button next">
+<a href=https://luigi.ltd/2017-08-04/outernet-receiver-with-a-wifi-grid-antenna/>
+<span class=button__text>Outernet Receiver with a Wifi Grid Antenna</span>
+<span class=button__icon>→</span>
+</a>
+</span>
+</div></div></div></div><footer class=footer>
+<div class=footer__inner>
+<div class="copyright copyright--user">
+<span>© 2020 Luigi Cruz</span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
+</div></div></footer><script src=https://luigi.ltd/assets/main.js></script>
+<script src=https://luigi.ltd/assets/prism.js></script>
+<script data-goatcounter=https://luigi.goatcounter.com/count async src=https://gc.zgo.at/count.js></script>
+</div></body></html>

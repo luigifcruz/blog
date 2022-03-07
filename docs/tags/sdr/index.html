@@ -1,433 +1,146 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html><html lang=en>
 <head>
-  
-    <title>SDR :: Luigi Cruz - PU2SPY</title>
-  
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="" />
-<meta name="keywords" content="SDRs, Raspberry Pi, Machine Learning, Parallel Computing, Satellites, Python, C&#43;&#43;, Golang" />
-<meta name="robots" content="noodp" />
-<link rel="canonical" href="https://luigi.ltd/tags/sdr/" />
-
-
-
-
-<link rel="stylesheet" href="https://luigi.ltd/assets/style.css">
-
-  <link rel="stylesheet" href="https://luigi.ltd/assets/green.css">
-
-
-
-
-
-
-<link rel="apple-touch-icon" href="https://luigi.ltd/img/apple-touch-icon-192x192.png">
-
-  <link rel="shortcut icon" href="https://luigi.ltd/favicon.ico">
-
-
-
-<meta name="twitter:card" content="summary" />
-
-  
-    <meta name="twitter:site" content="https://twitter.com/luigifcruz" />
-  
-    <meta name="twitter:creator" content="" />
-
-
-
-<meta property="og:locale" content="en" />
-<meta property="og:type" content="website" />
+<title>SDR :: Luigi Cruz - PU2SPY</title><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=keywords content="SDRs,Raspberry Pi,Machine Learning,Parallel Computing,Satellites,Python,C++,Golang">
+<meta name=robots content="noodp">
+<link rel=canonical href=https://luigi.ltd/tags/sdr/>
+<link rel=stylesheet href=https://luigi.ltd/assets/style.css>
+<link rel=stylesheet href=https://luigi.ltd/assets/green.css>
+<link rel=apple-touch-icon href=https://luigi.ltd/img/apple-touch-icon-192x192.png>
+<link rel="shortcut icon" href=https://luigi.ltd/favicon.ico>
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="https://twitter.com/luigifcruz">
+<meta name=twitter:creator content>
+<meta property="og:locale" content="en">
+<meta property="og:type" content="website">
 <meta property="og:title" content="SDR">
-<meta property="og:description" content="" />
-<meta property="og:url" content="https://luigi.ltd/tags/sdr/" />
-<meta property="og:site_name" content="Luigi Cruz - PU2SPY" />
-
-  
-    <meta property="og:image" content="https://luigi.ltd/favicon.ico">
-  
-
+<meta property="og:description" content>
+<meta property="og:url" content="https://luigi.ltd/tags/sdr/">
+<meta property="og:site_name" content="Luigi Cruz - PU2SPY">
+<meta property="og:image" content="https://luigi.ltd/favicon.ico">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
-
-
-
-
-
-  <link href="/tags/sdr/index.xml" rel="alternate" type="application/rss+xml" title="Luigi Cruz - PU2SPY" />
-
-
-
-
-
-
-
-
-
-</head>
-<body class="green">
-
-
+<link href=/tags/sdr/index.xml rel=alternate type=application/rss+xml title="Luigi Cruz - PU2SPY">
+</head><body class=green>
 <div class="container center headings--one-size">
-
-  <header class="header">
-  <div class="header__inner">
-    <div class="header__logo">
-      <a href="/">
-  <div class="logo">
-    Luigi Cruz
-  </div>
-</a>
-
-    </div>
-    
-      <div class="menu-trigger">menu</div>
-    
-  </div>
-  
-    <nav class="menu">
-  <ul class="menu__inner menu__inner--desktop">
-    
-      
-        
-          <li><a href="/about">About</a></li>
-        
-      
-        
-          <li><a href="/projects">Projects</a></li>
-        
-      
-        
-          <li><a href="/contact">Contact</a></li>
-        
-      
-        
-          <li><a href="https://twitter.com/luigifcruz">Twitter</a></li>
-        
-      
-        
-          <li><a href="https://github.com/luigifcruz">Github</a></li>
-        
-      
-        
-          <li><a href="https://www.linkedin.com/in/luigifc/">LinkedIn</a></li>
-        
-      
-      
-    
-
-    
-  </ul>
-
-  <ul class="menu__inner menu__inner--mobile">
-    
-      
-        <li><a href="/about">About</a></li>
-      
-    
-      
-        <li><a href="/projects">Projects</a></li>
-      
-    
-      
-        <li><a href="/contact">Contact</a></li>
-      
-    
-      
-        <li><a href="https://twitter.com/luigifcruz">Twitter</a></li>
-      
-    
-      
-        <li><a href="https://github.com/luigifcruz">Github</a></li>
-      
-    
-      
-        <li><a href="https://www.linkedin.com/in/luigifc/">LinkedIn</a></li>
-      
-    
-    
-  </ul>
-</nav>
-
-  
-</header>
-
-
-  <div class="content">
-    
-  
-  <div class="posts">
-    
-      <div class="post on-list">
-        <h1 class="post-title">
-          <a href="https://luigi.ltd/2018-11-23/software-defined-radar-cw-doppler-radar-with-limesdr/">Software Defined Doppler Radar with LimeSDR Mini</a>
-        </h1>
-        <div class="post-meta">
-          <span class="post-date">
-            2018-11-23
-          </span>
-          
-            <span class="post-author">:: Luigi Cruz</span>
-          
-        </div>
-
-        
-          <span class="post-tags">
-            
-            #<a href="https://luigi.ltd/tags/radar/">Radar</a>&nbsp;
-            
-            #<a href="https://luigi.ltd/tags/sdr/">SDR</a>&nbsp;
-            
-            #<a href="https://luigi.ltd/tags/gnuradio/">GNURadio</a>&nbsp;
-            
-            #<a href="https://luigi.ltd/tags/raspberrypi/">RaspberryPi</a>&nbsp;
-            
-            #<a href="https://luigi.ltd/tags/limesdr/">LimeSDR</a>&nbsp;
-            
-          </span>
-        
-
-        
-          <img src="https://luigi.ltd/2018-11-23/software-defined-radar-cw-doppler-radar-with-limesdr/images/radar_sfcw_portable_hardware_limesdr.jpg" class="post-cover" alt="Software Defined Doppler Radar with LimeSDR Mini" />
-        
-
-        <div class="post-content">
-          
-          
-          In this blog post, I’ll talk about my experiments with Software Defined Radar. This concept implies that radar systems can be simplified by abstracting analog hardware in favor of software implementations performing Digital Signal Processing inside a processor module. This is useful for aerospace applications. It lowers the complexity of the radar system consequently reducing the maintenance, weight and the probability of something misbehave in-flight.
+<header class=header>
+<div class=header__inner>
+<div class=header__logo>
+<a href=/>
+<div class=logo>
+Luigi Cruz
+</div></a>
+</div><div class=menu-trigger>menu</div></div><nav class=menu>
+<ul class="menu__inner menu__inner--desktop">
+<li><a href=/about>About</a></li><li><a href=/projects>Projects</a></li><li><a href=/contact>Contact</a></li><li><a href=https://twitter.com/luigifcruz>Twitter</a></li><li><a href=https://github.com/luigifcruz>Github</a></li><li><a href=https://www.linkedin.com/in/luigifc/>LinkedIn</a></li></ul><ul class="menu__inner menu__inner--mobile">
+<li><a href=/about>About</a></li><li><a href=/projects>Projects</a></li><li><a href=/contact>Contact</a></li><li><a href=https://twitter.com/luigifcruz>Twitter</a></li><li><a href=https://github.com/luigifcruz>Github</a></li><li><a href=https://www.linkedin.com/in/luigifc/>LinkedIn</a></li></ul></nav></header><div class=content>
+<div class=posts>
+<div class="post on-list">
+<h1 class=post-title>
+<a href=https://luigi.ltd/2018-11-23/software-defined-radar-cw-doppler-radar-with-limesdr/>Software Defined Doppler Radar with LimeSDR Mini</a>
+</h1><div class=post-meta>
+<span class=post-date>
+2018-11-23
+</span>
+<span class=post-author>:: Luigi Cruz</span>
+</div><span class=post-tags>
+#<a href=https://luigi.ltd/tags/radar/>Radar</a>&nbsp;
+#<a href=https://luigi.ltd/tags/sdr/>SDR</a>&nbsp;
+#<a href=https://luigi.ltd/tags/gnuradio/>GNURadio</a>&nbsp;
+#<a href=https://luigi.ltd/tags/raspberrypi/>RaspberryPi</a>&nbsp;
+#<a href=https://luigi.ltd/tags/limesdr/>LimeSDR</a>&nbsp;
+</span>
+<img src=https://luigi.ltd/2018-11-23/software-defined-radar-cw-doppler-radar-with-limesdr/images/radar_sfcw_portable_hardware_limesdr.jpg class=post-cover alt="Software Defined Doppler Radar with LimeSDR Mini">
+<div class=post-content>
+In this blog post, I’ll talk about my experiments with Software Defined Radar. This concept implies that radar systems can be simplified by abstracting analog hardware in favor of software implementations performing Digital Signal Processing inside a processor module. This is useful for aerospace applications. It lowers the complexity of the radar system consequently reducing the maintenance, weight and the probability of something misbehave in-flight.
 After reading about that, I wondered if it was possible to make something similar to reduce the number of expensive analog front-end parts needed for a radar system.
-          
-          
-        </div>
-
-        
-        <div>
-          <a class="read-more button"
-            href="/2018-11-23/software-defined-radar-cw-doppler-radar-with-limesdr/">Read more →</a>
-        </div>
-        
-      </div>
-    
-      <div class="post on-list">
-        <h1 class="post-title">
-          <a href="https://luigi.ltd/2018-02-12/reverse-engineering-goes-cda-telemetry/">Reverse Engineering GOES-16 CDA Telemetry</a>
-        </h1>
-        <div class="post-meta">
-          <span class="post-date">
-            2018-02-12
-          </span>
-          
-            <span class="post-author">:: Luigi Cruz</span>
-          
-        </div>
-
-        
-          <span class="post-tags">
-            
-            #<a href="https://luigi.ltd/tags/satellite/">Satellite</a>&nbsp;
-            
-            #<a href="https://luigi.ltd/tags/sdr/">SDR</a>&nbsp;
-            
-            #<a href="https://luigi.ltd/tags/gnuradio/">GNURadio</a>&nbsp;
-            
-          </span>
-        
-
-        
-
-        <div class="post-content">
-          
-          
-          In this post, I’ll detail how I managed to reverse engineer the telemetry signal from GOES-16 — NOAA’s third generation geosynchronous weather satellite built by Lockheed Martin and launched into space by ULA’s Altas V rocket.
-GOES-16 Telemetry Being Demodulated and Decoded.  This satellite is mostly known by the HRIT signal, responsible to distribute high-resolution meteorological data to hundreds of institutions throughout the portion of the earth illuminated by the spacecraft.
-          
-          
-        </div>
-
-        
-        <div>
-          <a class="read-more button"
-            href="/2018-02-12/reverse-engineering-goes-cda-telemetry/">Read more →</a>
-        </div>
-        
-      </div>
-    
-      <div class="post on-list">
-        <h1 class="post-title">
-          <a href="https://luigi.ltd/2017-08-04/outernet-receiver-with-a-wifi-grid-antenna/">Outernet Receiver with a Wifi Grid Antenna</a>
-        </h1>
-        <div class="post-meta">
-          <span class="post-date">
-            2017-08-04
-          </span>
-          
-            <span class="post-author">:: Luigi Cruz</span>
-          
-        </div>
-
-        
-          <span class="post-tags">
-            
-            #<a href="https://luigi.ltd/tags/outernet/">Outernet</a>&nbsp;
-            
-            #<a href="https://luigi.ltd/tags/sdr/">SDR</a>&nbsp;
-            
-            #<a href="https://luigi.ltd/tags/raspberrypi/">RaspberryPi</a>&nbsp;
-            
-          </span>
-        
-
-        
-          <img src="https://luigi.ltd/2017-08-04/outernet-receiver-with-a-wifi-grid-antenna/images/outernet-americas-signal-fft.png" class="post-cover" alt="Outernet Receiver with a Wifi Grid Antenna" />
-        
-
-        <div class="post-content">
-          
-          
-          I originally bought most of this hardware for the reception of the HRIT &amp; LRIT signals coming from the NOAA’s GOES Geostationary Satellites. Since I’m waiting for more LNAs to arrive from China, I decided to play around with my stock Wi-Fi Grid Antenna and figure out what else I can do with it.
+</div><div>
+<a class="read-more button" href=/2018-11-23/software-defined-radar-cw-doppler-radar-with-limesdr/>Read more →</a>
+</div></div><div class="post on-list">
+<h1 class=post-title>
+<a href=https://luigi.ltd/2018-02-12/reverse-engineering-goes-cda-telemetry/>Reverse Engineering GOES-16 CDA Telemetry</a>
+</h1><div class=post-meta>
+<span class=post-date>
+2018-02-12
+</span>
+<span class=post-author>:: Luigi Cruz</span>
+</div><span class=post-tags>
+#<a href=https://luigi.ltd/tags/satellite/>Satellite</a>&nbsp;
+#<a href=https://luigi.ltd/tags/sdr/>SDR</a>&nbsp;
+#<a href=https://luigi.ltd/tags/gnuradio/>GNURadio</a>&nbsp;
+</span>
+<div class=post-content>
+In this post, I’ll detail how I managed to reverse engineer the telemetry signal from GOES-16 — NOAA’s third generation geosynchronous weather satellite built by Lockheed Martin and launched into space by ULA’s Altas V rocket.
+GOES-16 Telemetry Being Demodulated and Decoded. This satellite is mostly known by the HRIT signal, responsible to distribute high-resolution meteorological data to hundreds of institutions throughout the portion of the earth illuminated by the spacecraft.
+</div><div>
+<a class="read-more button" href=/2018-02-12/reverse-engineering-goes-cda-telemetry/>Read more →</a>
+</div></div><div class="post on-list">
+<h1 class=post-title>
+<a href=https://luigi.ltd/2017-08-04/outernet-receiver-with-a-wifi-grid-antenna/>Outernet Receiver with a Wifi Grid Antenna</a>
+</h1><div class=post-meta>
+<span class=post-date>
+2017-08-04
+</span>
+<span class=post-author>:: Luigi Cruz</span>
+</div><span class=post-tags>
+#<a href=https://luigi.ltd/tags/outernet/>Outernet</a>&nbsp;
+#<a href=https://luigi.ltd/tags/sdr/>SDR</a>&nbsp;
+#<a href=https://luigi.ltd/tags/raspberrypi/>RaspberryPi</a>&nbsp;
+</span>
+<img src=https://luigi.ltd/2017-08-04/outernet-receiver-with-a-wifi-grid-antenna/images/outernet-americas-signal-fft.png class=post-cover alt="Outernet Receiver with a Wifi Grid Antenna">
+<div class=post-content>
+I originally bought most of this hardware for the reception of the HRIT & LRIT signals coming from the NOAA’s GOES Geostationary Satellites. Since I’m waiting for more LNAs to arrive from China, I decided to play around with my stock Wi-Fi Grid Antenna and figure out what else I can do with it.
 Although this is a 2.4Ghz antenna, the L-Band is close enough for a good SNR. Thus, I can receive almost every signal on the L-Band with this stock antenna, great!
-          
-          
-        </div>
-
-        
-        <div>
-          <a class="read-more button"
-            href="/2017-08-04/outernet-receiver-with-a-wifi-grid-antenna/">Read more →</a>
-        </div>
-        
-      </div>
-    
-      <div class="post on-list">
-        <h1 class="post-title">
-          <a href="https://luigi.ltd/2017-07-10/receiving-and-demodulating-the-lrpt-signal/">Receiving &amp; Demodulating the Meteor Satellite</a>
-        </h1>
-        <div class="post-meta">
-          <span class="post-date">
-            2017-07-10
-          </span>
-          
-            <span class="post-author">:: Luigi Cruz</span>
-          
-        </div>
-
-        
-          <span class="post-tags">
-            
-            #<a href="https://luigi.ltd/tags/satellite/">Satellite</a>&nbsp;
-            
-            #<a href="https://luigi.ltd/tags/sdr/">SDR</a>&nbsp;
-            
-            #<a href="https://luigi.ltd/tags/lrpt/">LRPT</a>&nbsp;
-            
-          </span>
-        
-
-        
-          <img src="https://luigi.ltd/2017-07-10/receiving-and-demodulating-the-lrpt-signal/images/meteor-lrpt-cities.jpg" class="post-cover" alt="Receiving &amp; Demodulating the Meteor Satellite" />
-        
-
-        <div class="post-content">
-          
-          
-          In the previous post, I talked about how I got the analog APT earth images from the NOAA sats and how I made my QFH Antenna. As I said, the APT signal is a legacy image transmission method from the 1960s that have strong drawbacks. The newest sats like Meteor-M and MetOp-A have a new protocol with digital modulation called LRPT (Low Rate Picture Transfer). Currently the single sat transmitting this protocol is the Meteor-MN2 and occasionally the Meteor-MN1.
-          
-          
-        </div>
-
-        
-        <div>
-          <a class="read-more button"
-            href="/2017-07-10/receiving-and-demodulating-the-lrpt-signal/">Read more →</a>
-        </div>
-        
-      </div>
-    
-      <div class="post on-list">
-        <h1 class="post-title">
-          <a href="https://luigi.ltd/2017-01-30/making-a-quadrifilar-antenna-for-noaa-apt/">Quadrifilar Antenna for NOAA APT Satellites</a>
-        </h1>
-        <div class="post-meta">
-          <span class="post-date">
-            2017-01-30
-          </span>
-          
-            <span class="post-author">:: Luigi Cruz</span>
-          
-        </div>
-
-        
-          <span class="post-tags">
-            
-            #<a href="https://luigi.ltd/tags/satellites/">Satellites</a>&nbsp;
-            
-            #<a href="https://luigi.ltd/tags/sdr/">SDR</a>&nbsp;
-            
-            #<a href="https://luigi.ltd/tags/apt/">APT</a>&nbsp;
-            
-            #<a href="https://luigi.ltd/tags/lrpt/">LRPT</a>&nbsp;
-            
-          </span>
-        
-
-        
-          <img src="https://luigi.ltd/2017-01-30/making-a-quadrifilar-antenna-for-noaa-apt/images/noaa-apt-fft.png" class="post-cover" alt="Quadrifilar Antenna for NOAA APT Satellites" />
-        
-
-        <div class="post-content">
-          
-          
-          Today, America and Russia have meteorological satellites orbiting the earth every hour, as they transit thought the planet, they beam down images with a visible, mid-near infrared or infrared spectrum. With infrared is possible to identify clouds even at night as well as the temperatures of the land, sea or cloud tops.
+</div><div>
+<a class="read-more button" href=/2017-08-04/outernet-receiver-with-a-wifi-grid-antenna/>Read more →</a>
+</div></div><div class="post on-list">
+<h1 class=post-title>
+<a href=https://luigi.ltd/2017-07-10/receiving-and-demodulating-the-lrpt-signal/>Receiving & Demodulating the Meteor Satellite</a>
+</h1><div class=post-meta>
+<span class=post-date>
+2017-07-10
+</span>
+<span class=post-author>:: Luigi Cruz</span>
+</div><span class=post-tags>
+#<a href=https://luigi.ltd/tags/satellite/>Satellite</a>&nbsp;
+#<a href=https://luigi.ltd/tags/sdr/>SDR</a>&nbsp;
+#<a href=https://luigi.ltd/tags/lrpt/>LRPT</a>&nbsp;
+</span>
+<img src=https://luigi.ltd/2017-07-10/receiving-and-demodulating-the-lrpt-signal/images/meteor-lrpt-cities.jpg class=post-cover alt="Receiving & Demodulating the Meteor Satellite">
+<div class=post-content>
+In the previous post, I talked about how I got the analog APT earth images from the NOAA sats and how I made my QFH Antenna. As I said, the APT signal is a legacy image transmission method from the 1960s that have strong drawbacks. The newest sats like Meteor-M and MetOp-A have a new protocol with digital modulation called LRPT (Low Rate Picture Transfer). Currently the single sat transmitting this protocol is the Meteor-MN2 and occasionally the Meteor-MN1.
+</div><div>
+<a class="read-more button" href=/2017-07-10/receiving-and-demodulating-the-lrpt-signal/>Read more →</a>
+</div></div><div class="post on-list">
+<h1 class=post-title>
+<a href=https://luigi.ltd/2017-01-30/making-a-quadrifilar-antenna-for-noaa-apt/>Quadrifilar Antenna for NOAA APT Satellites</a>
+</h1><div class=post-meta>
+<span class=post-date>
+2017-01-30
+</span>
+<span class=post-author>:: Luigi Cruz</span>
+</div><span class=post-tags>
+#<a href=https://luigi.ltd/tags/satellites/>Satellites</a>&nbsp;
+#<a href=https://luigi.ltd/tags/sdr/>SDR</a>&nbsp;
+#<a href=https://luigi.ltd/tags/apt/>APT</a>&nbsp;
+#<a href=https://luigi.ltd/tags/lrpt/>LRPT</a>&nbsp;
+</span>
+<img src=https://luigi.ltd/2017-01-30/making-a-quadrifilar-antenna-for-noaa-apt/images/noaa-apt-fft.png class=post-cover alt="Quadrifilar Antenna for NOAA APT Satellites">
+<div class=post-content>
+Today, America and Russia have meteorological satellites orbiting the earth every hour, as they transit thought the planet, they beam down images with a visible, mid-near infrared or infrared spectrum. With infrared is possible to identify clouds even at night as well as the temperatures of the land, sea or cloud tops.
 This signal is fairly weak, so I need a big antenna. There are several types but the best choice is the QFH (QuadriFilar Helicoidal) Antenna which have the right polarization for this type of signal and it’s easy to build.
-          
-          
-        </div>
-
-        
-        <div>
-          <a class="read-more button"
-            href="/2017-01-30/making-a-quadrifilar-antenna-for-noaa-apt/">Read more →</a>
-        </div>
-        
-      </div>
-    
-    <div class="pagination">
-  <div class="pagination__buttons">
-    
-    
-  </div>
-</div>
-
-  </div>
-
-  </div>
-
-  
-    <footer class="footer">
-  <div class="footer__inner">
-    
-      <div class="copyright copyright--user">
-        <span>© 2020 Luigi Cruz</span>
-    
-        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
-      </div>
-  </div>
-</footer>
-
-<script src="https://luigi.ltd/assets/main.js"></script>
-<script src="https://luigi.ltd/assets/prism.js"></script>
-
-
-
-
-<script data-goatcounter="https://luigi.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-
-
-
-  
-</div>
-
-</body>
-</html>
+</div><div>
+<a class="read-more button" href=/2017-01-30/making-a-quadrifilar-antenna-for-noaa-apt/>Read more →</a>
+</div></div><div class=pagination>
+<div class=pagination__buttons>
+</div></div></div></div><footer class=footer>
+<div class=footer__inner>
+<div class="copyright copyright--user">
+<span>© 2020 Luigi Cruz</span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
+</div></div></footer><script src=https://luigi.ltd/assets/main.js></script>
+<script src=https://luigi.ltd/assets/prism.js></script>
+<script data-goatcounter=https://luigi.goatcounter.com/count async src=https://gc.zgo.at/count.js></script>
+</div></body></html>

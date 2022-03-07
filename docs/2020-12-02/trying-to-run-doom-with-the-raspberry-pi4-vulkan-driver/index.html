@@ -1,322 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html><html lang=en>
 <head>
-  
-    <title>Trying To Run DOOM With The Raspberry Pi 4 Vulkan Driver :: Luigi Cruz - PU2SPY</title>
-  
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Vulkan is the new kid in the block for GPU accelerated tasks for Computing and Graphics. This new standard was released by the Khronos Group in 2016. When compared to OpenGL, Vulkan gives the developer more control over the hardware. This approach is widely used by other standards like DirectX 12 and Metal.
-The Raspberry Pi Foundation is working with the Open-Source consultancy company called Igalia to develop Vulkan drivers for the Raspberry Pi 4 Broadcom SoC." />
-<meta name="keywords" content="SDRs, Raspberry Pi, Machine Learning, Parallel Computing, Satellites, Python, C&#43;&#43;, Golang" />
-<meta name="robots" content="noodp" />
-<link rel="canonical" href="https://luigi.ltd/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/" />
-
-
-
-
-<link rel="stylesheet" href="https://luigi.ltd/assets/style.css">
-
-  <link rel="stylesheet" href="https://luigi.ltd/assets/green.css">
-
-
-
-
-
-
-<link rel="apple-touch-icon" href="https://luigi.ltd/img/apple-touch-icon-192x192.png">
-
-  <link rel="shortcut icon" href="https://luigi.ltd/favicon.ico">
-
-
-
-<meta name="twitter:card" content="summary" />
-
-  
-    <meta name="twitter:site" content="https://twitter.com/luigifcruz" />
-  
-    <meta name="twitter:creator" content="luigifcruz" />
-
-
-
-<meta property="og:locale" content="en" />
-<meta property="og:type" content="article" />
+<title>Trying To Run DOOM With The Raspberry Pi 4 Vulkan Driver :: Luigi Cruz - PU2SPY</title><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Vulkan is the new kid in the block for GPU accelerated tasks for Computing and Graphics. This new standard was released by the Khronos Group in 2016. When compared to OpenGL, Vulkan gives the developer more control over the hardware. This approach is widely used by other standards like DirectX 12 and Metal.
+The Raspberry Pi Foundation is working with the Open-Source consultancy company called Igalia to develop Vulkan drivers for the Raspberry Pi 4 Broadcom SoC.">
+<meta name=keywords content="SDRs,Raspberry Pi,Machine Learning,Parallel Computing,Satellites,Python,C++,Golang">
+<meta name=robots content="noodp">
+<link rel=canonical href=https://luigi.ltd/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/>
+<link rel=stylesheet href=https://luigi.ltd/assets/style.css>
+<link rel=stylesheet href=https://luigi.ltd/assets/green.css>
+<link rel=apple-touch-icon href=https://luigi.ltd/img/apple-touch-icon-192x192.png>
+<link rel="shortcut icon" href=https://luigi.ltd/favicon.ico>
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="https://twitter.com/luigifcruz">
+<meta name=twitter:creator content="luigifcruz">
+<meta property="og:locale" content="en">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Trying To Run DOOM With The Raspberry Pi 4 Vulkan Driver">
 <meta property="og:description" content="Vulkan is the new kid in the block for GPU accelerated tasks for Computing and Graphics. This new standard was released by the Khronos Group in 2016. When compared to OpenGL, Vulkan gives the developer more control over the hardware. This approach is widely used by other standards like DirectX 12 and Metal.
-The Raspberry Pi Foundation is working with the Open-Source consultancy company called Igalia to develop Vulkan drivers for the Raspberry Pi 4 Broadcom SoC." />
-<meta property="og:url" content="https://luigi.ltd/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/" />
-<meta property="og:site_name" content="Luigi Cruz - PU2SPY" />
-
-  <meta property="og:image" content="https://luigi.ltd/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/images/v3dv-pi-boot.jpg">
-
+The Raspberry Pi Foundation is working with the Open-Source consultancy company called Igalia to develop Vulkan drivers for the Raspberry Pi 4 Broadcom SoC.">
+<meta property="og:url" content="https://luigi.ltd/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/">
+<meta property="og:site_name" content="Luigi Cruz - PU2SPY">
+<meta property="og:image" content="https://luigi.ltd/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/images/v3dv-pi-boot.jpg">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
-
-
-  <meta property="article:published_time" content="2020-12-02 00:00:00 &#43;0000 UTC" />
-
-
-
-
-
-
-
-
-
-
-
-
-</head>
-<body class="green">
-
-
+<meta property="article:published_time" content="2020-12-02 00:00:00 +0000 UTC">
+</head><body class=green>
 <div class="container center headings--one-size">
-
-  <header class="header">
-  <div class="header__inner">
-    <div class="header__logo">
-      <a href="/">
-  <div class="logo">
-    Luigi Cruz
-  </div>
-</a>
-
-    </div>
-    
-      <div class="menu-trigger">menu</div>
-    
-  </div>
-  
-    <nav class="menu">
-  <ul class="menu__inner menu__inner--desktop">
-    
-      
-        
-          <li><a href="/about">About</a></li>
-        
-      
-        
-          <li><a href="/projects">Projects</a></li>
-        
-      
-        
-          <li><a href="/contact">Contact</a></li>
-        
-      
-        
-          <li><a href="https://twitter.com/luigifcruz">Twitter</a></li>
-        
-      
-        
-          <li><a href="https://github.com/luigifcruz">Github</a></li>
-        
-      
-        
-          <li><a href="https://www.linkedin.com/in/luigifc/">LinkedIn</a></li>
-        
-      
-      
-    
-
-    
-  </ul>
-
-  <ul class="menu__inner menu__inner--mobile">
-    
-      
-        <li><a href="/about">About</a></li>
-      
-    
-      
-        <li><a href="/projects">Projects</a></li>
-      
-    
-      
-        <li><a href="/contact">Contact</a></li>
-      
-    
-      
-        <li><a href="https://twitter.com/luigifcruz">Twitter</a></li>
-      
-    
-      
-        <li><a href="https://github.com/luigifcruz">Github</a></li>
-      
-    
-      
-        <li><a href="https://www.linkedin.com/in/luigifc/">LinkedIn</a></li>
-      
-    
-    
-  </ul>
-</nav>
-
-  
-</header>
-
-
-  <div class="content">
-    
-<div class="post">
-  <h1 class="post-title">
-    <a href="https://luigi.ltd/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/">Trying To Run DOOM With The Raspberry Pi 4 Vulkan Driver</a></h1>
-  <div class="post-meta">
-    
-      <span class="post-date">
-        2020-12-02 
-      </span>
-    
-    
-    <span class="post-author">:: Luigi Cruz</span>
-    
-  </div>
-
-  
-  <span class="post-tags">
-    
-    #<a href="https://luigi.ltd/tags/raspberrypi/">RaspberryPi</a>&nbsp;
-    
-    #<a href="https://luigi.ltd/tags/vulkan/">Vulkan</a>&nbsp;
-    
-    #<a href="https://luigi.ltd/tags/v3dv/">V3DV</a>&nbsp;
-    
-    #<a href="https://luigi.ltd/tags/gzdoom/">GZDOOM</a>&nbsp;
-    
-    #<a href="https://luigi.ltd/tags/doom/">DOOM</a>&nbsp;
-    
-    #<a href="https://luigi.ltd/tags/rbdoom-3-bfg/">RBDOOM-3-BFG</a>&nbsp;
-    
-    #<a href="https://luigi.ltd/tags/mesa/">MESA</a>&nbsp;
-    
-  </span>
-  
-
-  
-    <img src="https://luigi.ltd/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/images/v3dv-pi-boot.jpg" class="post-cover" alt="Trying To Run DOOM With The Raspberry Pi 4 Vulkan Driver" />
-  
-
-  
-
-  <div class="post-content"><div>
-        <p>Vulkan is the new kid in the block for GPU accelerated tasks for Computing and Graphics. This new standard was released by the Khronos Group in 2016. When compared to OpenGL, Vulkan gives the developer more control over the hardware. This approach is widely used by other standards like DirectX 12 and Metal.</p>
-<p>The Raspberry Pi Foundation is working with the Open-Source consultancy company called Igalia to develop <a href="https://www.raspberrypi.org/blog/vulkan-raspberry-pi-first-triangle/">Vulkan drivers</a> for the Raspberry Pi 4 Broadcom SoC. This driver called V3DV has recently <a href="https://www.raspberrypi.org/blog/vulkan-update-were-conformant/">become conformant</a> with the Vulkan v1.0 specification.</p>
-<p>Their roadmap for the future is to improve performance and upgrade the conformant version by supporting required features by the Vulkan Specification. That is interesting because, with a higher conformant version, you can run more Vulkan based software on your favorite Single Board Computer!</p>
-<p>My intention in trying to run DOOM games with this driver is to contribute to the development by identifying and requesting useful features used by real applications. I&rsquo;m not in the development team, but I&rsquo;m going to try to merge these patches into upstream Mesa. You can follow updates regarding this <a href="https://gitlab.freedesktop.org/mesa/mesa/-/issues/3915">here</a>. The patched version of the Mesa drivers can be found <a href="https://gitlab.freedesktop.org/luigifcruz/mesa/-/commit/0b3d66b6d561b06daac06ecb00f984334e203519">here</a>.</p>
-<blockquote>
-<p><strong>Stop!</strong> If you are looking for an easy way to run DOOM in your Pi, this is not a post for you. Try <a href="https://www.makeuseof.com/tag/run-doom-raspberry-pi/">chocolate-doom</a> instead. This is a technical overview of the current state of the V3DV drivers with DOOM engines.</p>
-</blockquote>
-<h3 id="the-ultimate-doom-gzdoom">The Ultimate DOOM (GZDOOM)<a href="#the-ultimate-doom-gzdoom" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
-
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/NgtjoOMsMqU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
-
-<p>The video above shows a demonstration of <a href="https://zdoom.org/downloads">GZDOOM</a> opening a <code>doom.wad</code> file from disk and correctly rendering the game using the Vulkan engine. The screen resolution was set to 1280x720. At this resolution, the stock Raspberry Pi 4 2GB model can run the game with a framerate between 10 and 15 frames-per-second. A higher framerate is possible with lower visual quality and resolution. But in this case, the game is crashing randomly with Vulkan synchronization errors. The stability and performance will likely improve as more work is committed to the V3DV driver every day.</p>
-<p>My patch for this game added support for the <code>VK_FORMAT_A2R10G10B10_UNORM_PACK32</code> pixel format. That was easy to add since it&rsquo;s practically the same as the already supported <code>VK_FORMAT_A2B10G10R10_UNORM_PACK32</code> as an <code>RGB10_A2</code> image format. The game also requested <code>VkPhysicalDeviceFeatures::depthClamp</code> which is currently unsupported by the V3DV driver. Overwriting this requirement didn&rsquo;t result in noticeable artifacts.</p>
-<h3 id="doom-3-bfg-edition-rbdoom-3-bfg">DOOM 3: BFG Edition (RBDOOM-3-BFG)<a href="#doom-3-bfg-edition-rbdoom-3-bfg" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
-<p>I also wrote another patch for the &ldquo;DOOM 3: BFG Edition&rdquo; using the <a href="https://github.com/RobertBeckebans/RBDOOM-3-BFG">RBDOOM-3-BFG</a> port. This game is larger than the &ldquo;Ultimate DOOM&rdquo; and thus requires a big chunk of video memory. That&rsquo;s why I didn&rsquo;t have the chance to test it with my 2GB model to verify if it works with the patch.</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<img 
-  sizes="(min-width: 35em) 1200px, 100vw"
-  srcset='
-  
-    /2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/images/v3dv-bc-compression_hu1b4e5d88aad85524dfd3166da09a1252_196465_44fe157cd8e3084c4f2c7fa60a596cd0.jpg 500w
-  
-  
-    , /2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/images/v3dv-bc-compression_hu1b4e5d88aad85524dfd3166da09a1252_196465_d856a23eabc7ca8eb07fcb77b91ef02c.jpg 800w
-  
-  
-    , /2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/images/v3dv-bc-compression_hu1b4e5d88aad85524dfd3166da09a1252_196465_79d2e3b0cbbad4568557da36c41f5153.jpg 1200w
-  
-  
-    , /2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/images/v3dv-bc-compression_hu1b4e5d88aad85524dfd3166da09a1252_196465_e7e155a883bb0eb5c365fd99e41e55b0.jpg 1500w 
-  
-  , /2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/images/v3dv-bc-compression_hu1b4e5d88aad85524dfd3166da09a1252_196465_1920x0_resize_q95_linear.jpg 1920w '
-  src="/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/images/v3dv-bc-compression_hu1b4e5d88aad85524dfd3166da09a1252_196465_1920x0_resize_q95_linear.jpg"
-  alt="">
-<p>Here, the culprit was the <code>VkPhysicalDeviceFeatures::textureCompressionBC</code> missing support. This feature is useful to compress the textures on the GPU to reduce memory usage. Luckily, the Raspberry Pi GPU has hardware support for the BC1, BC2, and BC3 formats. The game stopped crashing after I added support for <code>VK_FORMAT_BC3_UNORM_BLOCK</code> and <code>VK_FORMAT_BC1_RGB_UNORM_BLOCK</code> to the driver. The image above shows the <a href="https://raw.githubusercontent.com/SaschaWillems/vulkan_slim/master/instancing/instancing.cpp">instancing</a> example from an old version of Sascha Willems&rsquo; Vulkan demos that requires texture compression working as expected.</p>
-<br>
+<header class=header>
+<div class=header__inner>
+<div class=header__logo>
+<a href=/>
+<div class=logo>
+Luigi Cruz
+</div></a>
+</div><div class=menu-trigger>menu</div></div><nav class=menu>
+<ul class="menu__inner menu__inner--desktop">
+<li><a href=/about>About</a></li><li><a href=/projects>Projects</a></li><li><a href=/contact>Contact</a></li><li><a href=https://twitter.com/luigifcruz>Twitter</a></li><li><a href=https://github.com/luigifcruz>Github</a></li><li><a href=https://www.linkedin.com/in/luigifc/>LinkedIn</a></li></ul><ul class="menu__inner menu__inner--mobile">
+<li><a href=/about>About</a></li><li><a href=/projects>Projects</a></li><li><a href=/contact>Contact</a></li><li><a href=https://twitter.com/luigifcruz>Twitter</a></li><li><a href=https://github.com/luigifcruz>Github</a></li><li><a href=https://www.linkedin.com/in/luigifc/>LinkedIn</a></li></ul></nav></header><div class=content>
+<div class=post>
+<h1 class=post-title>
+<a href=https://luigi.ltd/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/>Trying To Run DOOM With The Raspberry Pi 4 Vulkan Driver</a></h1><div class=post-meta>
+<span class=post-date>
+2020-12-02
+</span>
+<span class=post-author>:: Luigi Cruz</span>
+</div><span class=post-tags>
+#<a href=https://luigi.ltd/tags/raspberrypi/>RaspberryPi</a>&nbsp;
+#<a href=https://luigi.ltd/tags/vulkan/>Vulkan</a>&nbsp;
+#<a href=https://luigi.ltd/tags/v3dv/>V3DV</a>&nbsp;
+#<a href=https://luigi.ltd/tags/gzdoom/>GZDOOM</a>&nbsp;
+#<a href=https://luigi.ltd/tags/doom/>DOOM</a>&nbsp;
+#<a href=https://luigi.ltd/tags/rbdoom-3-bfg/>RBDOOM-3-BFG</a>&nbsp;
+#<a href=https://luigi.ltd/tags/mesa/>MESA</a>&nbsp;
+</span>
+<img src=https://luigi.ltd/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/images/v3dv-pi-boot.jpg class=post-cover alt="Trying To Run DOOM With The Raspberry Pi 4 Vulkan Driver">
+<div class=post-content><div>
+<p>Vulkan is the new kid in the block for GPU accelerated tasks for Computing and Graphics. This new standard was released by the Khronos Group in 2016. When compared to OpenGL, Vulkan gives the developer more control over the hardware. This approach is widely used by other standards like DirectX 12 and Metal.</p><p>The Raspberry Pi Foundation is working with the Open-Source consultancy company called Igalia to develop <a href=https://www.raspberrypi.org/blog/vulkan-raspberry-pi-first-triangle/>Vulkan drivers</a> for the Raspberry Pi 4 Broadcom SoC. This driver called V3DV has recently <a href=https://www.raspberrypi.org/blog/vulkan-update-were-conformant/>become conformant</a> with the Vulkan v1.0 specification.</p><p>Their roadmap for the future is to improve performance and upgrade the conformant version by supporting required features by the Vulkan Specification. That is interesting because, with a higher conformant version, you can run more Vulkan based software on your favorite Single Board Computer!</p><p>My intention in trying to run DOOM games with this driver is to contribute to the development by identifying and requesting useful features used by real applications. I&rsquo;m not in the development team, but I&rsquo;m going to try to merge these patches into upstream Mesa. You can follow updates regarding this <a href=https://gitlab.freedesktop.org/mesa/mesa/-/issues/3915>here</a>. The patched version of the Mesa drivers can be found <a href=https://gitlab.freedesktop.org/luigifcruz/mesa/-/commit/0b3d66b6d561b06daac06ecb00f984334e203519>here</a>.</p><blockquote>
+<p><strong>Stop!</strong> If you are looking for an easy way to run DOOM in your Pi, this is not a post for you. Try <a href=https://www.makeuseof.com/tag/run-doom-raspberry-pi/>chocolate-doom</a> instead. This is a technical overview of the current state of the V3DV drivers with DOOM engines.</p></blockquote><h3 id=the-ultimate-doom-gzdoom>The Ultimate DOOM (GZDOOM)<a href=#the-ultimate-doom-gzdoom class=hanchor arialabel=Anchor>&#8983;</a> </h3><div style=position:relative;padding-bottom:56.25%;height:0;overflow:hidden>
+<iframe src=https://www.youtube.com/embed/NgtjoOMsMqU style=position:absolute;top:0;left:0;width:100%;height:100%;border:0 allowfullscreen title="YouTube Video"></iframe>
+</div><p>The video above shows a demonstration of <a href=https://zdoom.org/downloads>GZDOOM</a> opening a <code>doom.wad</code> file from disk and correctly rendering the game using the Vulkan engine. The screen resolution was set to 1280x720. At this resolution, the stock Raspberry Pi 4 2GB model can run the game with a framerate between 10 and 15 frames-per-second. A higher framerate is possible with lower visual quality and resolution. But in this case, the game is crashing randomly with Vulkan synchronization errors. The stability and performance will likely improve as more work is committed to the V3DV driver every day.</p><p>My patch for this game added support for the <code>VK_FORMAT_A2R10G10B10_UNORM_PACK32</code> pixel format. That was easy to add since it&rsquo;s practically the same as the already supported <code>VK_FORMAT_A2B10G10R10_UNORM_PACK32</code> as an <code>RGB10_A2</code> image format. The game also requested <code>VkPhysicalDeviceFeatures::depthClamp</code> which is currently unsupported by the V3DV driver. Overwriting this requirement didn&rsquo;t result in noticeable artifacts.</p><h3 id=doom-3-bfg-edition-rbdoom-3-bfg>DOOM 3: BFG Edition (RBDOOM-3-BFG)<a href=#doom-3-bfg-edition-rbdoom-3-bfg class=hanchor arialabel=Anchor>&#8983;</a> </h3><p>I also wrote another patch for the &ldquo;DOOM 3: BFG Edition&rdquo; using the <a href=https://github.com/RobertBeckebans/RBDOOM-3-BFG>RBDOOM-3-BFG</a> port. This game is larger than the &ldquo;Ultimate DOOM&rdquo; and thus requires a big chunk of video memory. That&rsquo;s why I didn&rsquo;t have the chance to test it with my 2GB model to verify if it works with the patch.</p><img sizes="(min-width: 35em) 1200px, 100vw" srcset="/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/images/v3dv-bc-compression_hu1b4e5d88aad85524dfd3166da09a1252_196465_44fe157cd8e3084c4f2c7fa60a596cd0.jpg 500w
+, /2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/images/v3dv-bc-compression_hu1b4e5d88aad85524dfd3166da09a1252_196465_d856a23eabc7ca8eb07fcb77b91ef02c.jpg 800w
+, /2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/images/v3dv-bc-compression_hu1b4e5d88aad85524dfd3166da09a1252_196465_79d2e3b0cbbad4568557da36c41f5153.jpg 1200w
+, /2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/images/v3dv-bc-compression_hu1b4e5d88aad85524dfd3166da09a1252_196465_e7e155a883bb0eb5c365fd99e41e55b0.jpg 1500w
+, /2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/images/v3dv-bc-compression_hu1b4e5d88aad85524dfd3166da09a1252_196465_1920x0_resize_q95_linear.jpg 1920w" src=/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/images/v3dv-bc-compression_hu1b4e5d88aad85524dfd3166da09a1252_196465_1920x0_resize_q95_linear.jpg alt>
+<p>Here, the culprit was the <code>VkPhysicalDeviceFeatures::textureCompressionBC</code> missing support. This feature is useful to compress the textures on the GPU to reduce memory usage. Luckily, the Raspberry Pi GPU has hardware support for the BC1, BC2, and BC3 formats. The game stopped crashing after I added support for <code>VK_FORMAT_BC3_UNORM_BLOCK</code> and <code>VK_FORMAT_BC1_RGB_UNORM_BLOCK</code> to the driver. The image above shows the <a href=https://raw.githubusercontent.com/SaschaWillems/vulkan_slim/master/instancing/instancing.cpp>instancing</a> example from an old version of Sascha Willems&rsquo; Vulkan demos that requires texture compression working as expected.</p><br>
 <div class="index-content framed">
-    <h1 id="hello-there-im-luigi">Hello there, I&rsquo;m Luigi!<a href="#hello-there-im-luigi" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
-<p>I&rsquo;m a Computer Engineering Student and Radio Amateur (PU2SPY). Here you can find information <a href="/about">about me</a> and my <a href="/projects">projects</a>. I talk about SDRs, Raspberry Pi, Machine Learning, Parallel Computing, Satellites, Python, C++, and Golang.</p>
-<p><a href="https://twitter.com/luigifcruz">Twitter</a> | <a href="https://github.com/luigifcruz">Github</a> | <a href="https://www.linkedin.com/in/luigifc/">LinkedIn</a></p>
-<p><em>Thanks for visiting!</em></p>
-
-</div>
-
-      </div></div>
-
-  
-  
-<div class="pagination">
-    <div class="pagination__title">
-        <span class="pagination__title-h">Read other posts</span>
-        <hr />
-    </div>
-    <div class="pagination__buttons">
-        
-        
-        <span class="button next">
-            <a href="https://luigi.ltd/2019-09-20/using-limenet-internal-gnss-constellation-monitor/">
-                <span class="button__text">Monitoring GNSS Constellations with Galmon Using the LimeNET Micro Ublox-M8 Module</span>
-                <span class="button__icon">→</span>
-            </a>
-        </span>
-        
-    </div>
-</div>
-
-  
-
-  
-
-</div>
-
-  </div>
-
-  
-    <footer class="footer">
-  <div class="footer__inner">
-    
-      <div class="copyright copyright--user">
-        <span>© 2020 Luigi Cruz</span>
-    
-        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
-      </div>
-  </div>
-</footer>
-
-<script src="https://luigi.ltd/assets/main.js"></script>
-<script src="https://luigi.ltd/assets/prism.js"></script>
-
-
-
-
-<script data-goatcounter="https://luigi.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-
-
-
-  
-</div>
-
-</body>
-</html>
+<h1 id=hello-there-im-luigi>Hello there, I&rsquo;m Luigi!<a href=#hello-there-im-luigi class=hanchor arialabel=Anchor>&#8983;</a> </h1><p>I&rsquo;m a Computer Engineering Student and Radio Amateur (PU2SPY). Here you can find information <a href=/about>about me</a> and my <a href=/projects>projects</a>. I talk about SDRs, Raspberry Pi, Machine Learning, Parallel Computing, Satellites, Python, C++, and Golang.</p><p><a href=https://twitter.com/luigifcruz>Twitter</a> | <a href=https://github.com/luigifcruz>Github</a> | <a href=https://www.linkedin.com/in/luigifc/>LinkedIn</a></p><p><em>Thanks for visiting!</em></p></div></div></div><div class=pagination>
+<div class=pagination__title>
+<span class=pagination__title-h>Read other posts</span>
+<hr>
+</div><div class=pagination__buttons>
+<span class="button next">
+<a href=https://luigi.ltd/2019-09-20/using-limenet-internal-gnss-constellation-monitor/>
+<span class=button__text>Monitoring GNSS Constellations with Galmon Using the LimeNET Micro Ublox-M8 Module</span>
+<span class=button__icon>→</span>
+</a>
+</span>
+</div></div></div></div><footer class=footer>
+<div class=footer__inner>
+<div class="copyright copyright--user">
+<span>© 2020 Luigi Cruz</span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
+</div></div></footer><script src=https://luigi.ltd/assets/main.js></script>
+<script src=https://luigi.ltd/assets/prism.js></script>
+<script data-goatcounter=https://luigi.goatcounter.com/count async src=https://gc.zgo.at/count.js></script>
+</div></body></html>

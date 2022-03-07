@@ -1,22 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>MESA on Luigi Cruz - PU2SPY</title>
-    <link>https://luigi.ltd/tags/mesa/</link>
-    <description>Recent content in MESA on Luigi Cruz - PU2SPY</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>© 2020 Luigi Cruz</copyright>
-    <lastBuildDate>Wed, 02 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://luigi.ltd/tags/mesa/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Trying To Run DOOM With The Raspberry Pi 4 Vulkan Driver</title>
-      <link>https://luigi.ltd/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/</link>
-      <pubDate>Wed, 02 Dec 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://luigi.ltd/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/</guid>
-      <description>Vulkan is the new kid in the block for GPU accelerated tasks for Computing and Graphics. This new standard was released by the Khronos Group in 2016. When compared to OpenGL, Vulkan gives the developer more control over the hardware. This approach is widely used by other standards like DirectX 12 and Metal.
-The Raspberry Pi Foundation is working with the Open-Source consultancy company called Igalia to develop Vulkan drivers for the Raspberry Pi 4 Broadcom SoC.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>MESA on Luigi Cruz - PU2SPY</title><link>https://luigi.ltd/tags/mesa/</link><description>Recent content in MESA on Luigi Cruz - PU2SPY</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2020 Luigi Cruz</copyright><lastBuildDate>Wed, 02 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://luigi.ltd/tags/mesa/index.xml" rel="self" type="application/rss+xml"/><item><title>Trying To Run DOOM With The Raspberry Pi 4 Vulkan Driver</title><link>https://luigi.ltd/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/</link><pubDate>Wed, 02 Dec 2020 00:00:00 +0000</pubDate><guid>https://luigi.ltd/2020-12-02/trying-to-run-doom-with-the-raspberry-pi4-vulkan-driver/</guid><description>Vulkan is the new kid in the block for GPU accelerated tasks for Computing and Graphics. This new standard was released by the Khronos Group in 2016. When compared to OpenGL, Vulkan gives the developer more control over the hardware. This approach is widely used by other standards like DirectX 12 and Metal.
+The Raspberry Pi Foundation is working with the Open-Source consultancy company called Igalia to develop Vulkan drivers for the Raspberry Pi 4 Broadcom SoC.</description></item></channel></rss>
