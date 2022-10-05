@@ -20,6 +20,13 @@ This website is for documenting the projects that I worked on. They are going to
 ## Talks & Presentations
 These are my talks, here you can find the slides and the video if they were recorded. If you have any question, don't hesitate to [contact me](/contact)!
 
+##### GNU Radio Conference 2022 - CyberEther Heterogeneous GUI
+<cite>September, 2022 - Washington, DC - USA</cite> &mdash; CyberEther offers a GPU accelerated frequency sink interface (2D Waterfall, Lineplot, Spectrogram). It works natively using modern graphical APIs like Metal, Vulkan, and WebGPU. The internal Digital Signal Processing (DSP) is accelerated whenever possible using parallel computing APIs like CUDA, Metal, and Vulkan. By being modular, CyberEther can adapt to the target device and run with the best-supported combination possible. For more information about the project, visit [CyberEther repository](https://github.com/luigifcruz/CyberEther).
+
+{{< youtube 1jJWfsGeZvE >}}
+
+> [Read the Slides](/media/GNU_Radio_Conference_2022_CyberEther.pdf)
+
 ##### SciPy Conference 2022 - GPU Accelerated FM Demodulation
 <cite>July, 2022 - Austin, Texas - USA</cite> &mdash; Talk about the process of demodulating real-world FM stations in parallel with elemental Numpy and SciPy Signal functions. Focusing on techniques, like vectorization, buffering, and frequency-domain filters, to make the computation more computationally efficient to achieve real-time operation. We also discuss how to apply GPU acceleration with CuPy and cuSignal.
 
