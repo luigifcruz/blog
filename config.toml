@@ -1,5 +1,5 @@
 baseurl = "https://luigi.ltd/"
-publishDir = "docs"
+publishDir = "public"
 languageCode = "en-us"
 theme = ["hugo-cloak-email", "terminal"]
 paginate = 5
