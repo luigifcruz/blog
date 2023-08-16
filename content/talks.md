@@ -6,6 +6,13 @@ showFullContent = false
 
 These are my talks, here you can find the slides and the video if they were recorded. To know more about be navigate to the [about](/about) page. If you have any question, don't hesitate to [contact me](/contact)!
 
+##### C++Now 2023 - BLADE: CUDA-Accelerated DSP for Allen Telescope Array
+<cite>May, 2023 - Aspen, CO - USA</cite> &mdash; The Allen Telescope Array, comprising 42 antennas, utilizes the BLADE (Breakthrough Listen Accelerated DSP Engine) - a C++20 GPU-based software. This talk delves into the capabilities of a software-defined telescope with a GPU backend, emphasizing the real-time processing of a ~1 Tbps data stream. Highlighting the challenges of hardware bottlenecks and the intricacies of building a distributed pipeline, the discussion also sheds light on BLADE's modular interface that seamlessly integrates optimization techniques such as CUDA Graphs, JIT compilation of CUDA kernels, and smart memory management. For more information about the project, visit [BLADE repository](https://github.com/luigifcruz/blade).
+
+{{< youtube PC0hBG70fN8 >}}
+
+> [Read the Slides](/media/CppNow_Presentation_Blade.pdf)
+
 ##### GNU Radio Conference 2022 - CyberEther Heterogeneous GUI
 <cite>September, 2022 - Washington, DC - USA</cite> &mdash; CyberEther offers a GPU accelerated frequency sink interface (2D Waterfall, Lineplot, Spectrogram). It works natively using modern graphical APIs like Metal, Vulkan, and WebGPU. The internal Digital Signal Processing (DSP) is accelerated whenever possible using parallel computing APIs like CUDA, Metal, and Vulkan. By being modular, CyberEther can adapt to the target device and run with the best-supported combination possible. For more information about the project, visit [CyberEther repository](https://github.com/luigifcruz/CyberEther).
 
