@@ -4,7 +4,7 @@ authorTwitter = "luigifcruz"
 showFullContent = false
 +++
 
-My name is Luigi Cruz and I’m a Computer Engineering student currently based in Brazil developing projects utilizing Software Defined Radios, Micro-Controllers, or FPGAs primarily for Satellite Telecommunications and Digital Signal Processing projects. I also developed avionics modules for high-performance model rockets for university student competitions.
+My name is Luigi Cruz and I’m a Computer Engineer currently based in Brazil developing projects utilizing Software Defined Radios, Micro-Controllers, or FPGAs primarily for Satellite Telecommunications and Digital Signal Processing projects. I also developed avionics modules for high-performance model rockets for university competitions.
 
 This website is for documenting the projects that I worked on. They are going to have something about RF Communications, Digital Signal Processing, FPGAs, Machine Learning, Rockets, Software Engineering, or electronics in general. Enjoy!
 

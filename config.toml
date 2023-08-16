@@ -36,7 +36,7 @@ enableRobotsTXT = true
   [languages.en]
     languageName = "English"
     title = "Luigi Cruz - PU2SPY"
-    subtitle = "Personal website. Computer Engineering Student. Radio Amateur (PU2SPY). Talking about SDRs, Raspberry Pi, Machine Learning, Parallel Computing, Satellites, Python, C++ and Golang."
+    subtitle = "Personal website. Computer Engineer. Radio Amateur (PU2SPY). Talking about SDRs, Raspberry Pi, Machine Learning, Parallel Computing, Satellites, Python, C++ and Golang."
     owner = "Luigi Cruz"
     keywords = "SDRs, Raspberry Pi, Machine Learning, Parallel Computing, Satellites, Python, C++, Golang"
     copyright = "© 2020 Luigi Cruz"
